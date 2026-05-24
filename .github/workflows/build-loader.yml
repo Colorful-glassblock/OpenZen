@@ -31,6 +31,13 @@ jobs:
       # populate ${VCPKG_ROOT}/archives, which actions/cache then
       # snapshots along with installed/.
       VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}\\vcpkg-archives,readwrite"
+      # Opt every JavaScript action into the Node.js 24 runtime ahead of the
+      # 2026-06-02 forced switchover. The v4 / v1 pins below all still ship
+      # a Node 20 binary in their action.yml, and GitHub deprecated Node 20
+      # on 2025-09-19; setting this flag makes the runner execute them under
+      # Node 24 regardless, which silences the deprecation warning and
+      # de-risks the upcoming default flip.
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
       - name: Checkout
