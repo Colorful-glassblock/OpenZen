@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
  * regardless of which class loader it lives in.</p>
  */
 public final class PatchAgent {
-    public static final String INSTRUMENTATION_KEY = "asm.patchify.instrumentation";
-    private static final Logger LOGGER = LogManager.getLogger("PatchAgent");
+    public static final String INSTRUMENTATION_KEY = "oz.instrumentation";
+    private static final Logger LOGGER = LogManager.getLogger(PatchAgent.class);
 
     private static volatile boolean transformerInstalled = false;
 
@@ -40,7 +40,7 @@ public final class PatchAgent {
             return;
         }
         System.getProperties().put(INSTRUMENTATION_KEY, inst);
-        LOGGER.info("PatchAgent attached, retransform supported = {}", inst.isRetransformClassesSupported());
+        LOGGER.info("agent attached, retransform supported = {}", inst.isRetransformClassesSupported());
     }
 
     /**
@@ -62,7 +62,7 @@ public final class PatchAgent {
         }
         Instrumentation inst = getInstrumentation();
         if (inst == null) {
-            LOGGER.warn("PatchAgent not attached; cannot install patches");
+            LOGGER.warn("agent not attached; cannot install patches");
             return;
         }
         PatchClassFileTransformer transformer = new PatchClassFileTransformer();

@@ -109,7 +109,7 @@ public class ZenClient extends ClientBase {
             if (PatchAgent.getInstrumentation() != null) {
                 PatchAgent.installPatchesAndRetransform();
             } else {
-                logger.warn("PatchAgent not attached. Launch with `./gradlew runClient0` so the agent jvmArg is set.");
+                logger.warn("agent not attached. Launch with `./gradlew runClient0` so the agent jvmArg is set.");
             }
             isReady = true;
             logger.info("{} v{} initialized.", CLIENT_NAME, VERSION);

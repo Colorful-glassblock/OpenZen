@@ -100,6 +100,20 @@ OpenZen 支持两种交付形式：**Java Agent jar**（挂到 Minecraft JVM 启
 
 > **本项目不能作为 Forge mod 启动。** `mods/` 加载路径不被支持，不要把 jar 丢进 `.minecraft/mods/`。
 
+### 编译时类名混淆（重要）
+
+每次构建,OpenZen 会**自动把所有自有类(`shit.zen.*` / `asm.patchify.*`)重命名为随机的 16 位名字**——包名和类名都随机,**每次构建都不一样**、互不重复,原始类名/包名一律不保留(连日志里残留的类名字符串也清理掉了)。引导链(Agent 入口、DLL 加载、`Class.forName`)会在构建时自动联动到新名字,无需手工处理。两种交付形式(jar / 注入器)都已混淆。
+
+这是为了对抗按**类名黑名单**工作的反作弊(见下方[常见问题](#布吉岛反作弊绕过))。正因为名字每次构建随机:
+
+> ⚠️ **从 GitHub Actions / Release 下载到的是预编译版本,所有人拿到的是同一套混淆名**——这套固定的名字随时可能被反作弊收录进黑名单。想要一套**别人都不知道、独一无二**的类名,请**自己编译**:
+> - **Fork 本仓库**,在你自己的 GitHub Actions 里跑一次构建(每次运行都生成全新随机名),下载你自己的 artifact;**或**
+> - **clone 到本地**自己 `gradlew jar` / `gradlew dll`(每次本地构建同样是全新随机名)。
+
+每次构建的"旧名 → 新名"映射写在 `build/rename-mapping.txt`(CI 也会把它作为 artifact 上传、并附到 Release),这是反混淆崩溃日志的**唯一**依据。**注意它每次构建都不同,务必和对应产物一起保存。**
+
+实现细节见 `build.gradle` 的 `ext.obfuscateJar`:用项目自带的 ASM 在 ForgeGradle `reobf` 之后对产出 jar 做 `ClassRemapper` 重命名,**只改类名、不动方法/字段名**(避免破坏反射、JNI、`@SerializedName` 等)。
+
 ### 共同前置
 
 - **JDK 17**（推荐 Microsoft Build of OpenJDK / Temurin / Azul Zulu 任一）。
@@ -172,14 +186,15 @@ OpenZen 支持两种交付形式：**Java Agent jar**（挂到 Minecraft JVM 启
 
 诊断日志：
 - Native 端：`%TEMP%\openzen.log`
-- Java 端：Minecraft 自己的 `logs/latest.log`（搜索 `OpenZen-Bootstrap`、`GameLoaderBridge`、`PatchAgent`、`ZenBootstrap`）
+- Java 端：Minecraft 自己的 `logs/latest.log`（类名已被构建时混淆、logger 名是随机的，改用固定日志文案定位，如 `bootstrap.start`、`bridge.load`、`agent attached`、`Runtime mapping`）
 
 ## 常见问题
 
 ### 布吉岛反作弊绕过
 ~~截止至目前（2026/05/23)，布吉岛并未检测本项目，考虑其反作弊为黑名单类名机制。~~
 ~~建议构建时修改类名。~~
-类名已黑名单，请在构建时修改类名。
+~~类名已黑名单，请在构建时修改类名。~~
+类名已黑名单。现在**每次构建都会自动随机化全部类名**(见上方[编译时类名混淆](#编译时类名混淆重要))——但**务必自己 Fork/clone 编译**,别直接用 GitHub Actions / Release 上的预编译版:那是固定的一套名字,会被拉黑。
 
 ## 致谢
 
