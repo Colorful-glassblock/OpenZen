@@ -66,29 +66,29 @@ public class KillAura extends Module {
 
     // Fields kept in sync with the obfuscated jar: 12 BooleanSetting / 7
     // NumberSetting / 3 ModeSetting, in declaration order.
-    public final BooleanSetting attackPlayer    = new BooleanSetting("Attack Player", true);
-    public final BooleanSetting attackInvisible = new BooleanSetting("Attack Invisible", false);
-    public final BooleanSetting attackAnimals   = new BooleanSetting("Attack Animals", false);
-    public final BooleanSetting attackMobs      = new BooleanSetting("Attack Mobs", true);
-    public final BooleanSetting multiAttack     = new BooleanSetting("Multi Attack", true);
-    public final BooleanSetting infSwitch       = new BooleanSetting("Infinity Switch", false);
-    public final BooleanSetting preferBaby      = new BooleanSetting("Prefer Baby", false);
-    public final BooleanSetting morePart        = new BooleanSetting("More Particles", false);
-    public final BooleanSetting keepSprint      = new BooleanSetting("Keep Sprint", true);
-    public final BooleanSetting ignoreSkipTicks = new BooleanSetting("Ignore skip ticks", false);
-    public final BooleanSetting fakeAutoBlock   = new BooleanSetting("Fake AutoBlock", true);
-    public final BooleanSetting test            = new BooleanSetting("Test", false);
-    public final NumberSetting aimRange    = new NumberSetting("Aim Range", 4.0, 1.0, 6.0, 0.1);
-    public final NumberSetting maxAps      = new NumberSetting("Max APS", 12.0, 1.0, 20.0, 1.0);
-    public final NumberSetting minAps      = new NumberSetting("Min APS", 9.0, 1.0, 20.0, 1.0);
-    public final NumberSetting switchSize  = new NumberSetting("Switch Size", 1.0, 1.0, 5.0, 1.0,
+    public final BooleanSetting attackPlayer    = new BooleanSetting("攻击玩家", true);
+    public final BooleanSetting attackInvisible = new BooleanSetting("攻击隐身", false);
+    public final BooleanSetting attackAnimals   = new BooleanSetting("攻击动物", false);
+    public final BooleanSetting attackMobs      = new BooleanSetting("攻击怪物", true);
+    public final BooleanSetting multiAttack     = new BooleanSetting("多重攻击", true);
+    public final BooleanSetting infSwitch       = new BooleanSetting("无限切换", false);
+    public final BooleanSetting preferBaby      = new BooleanSetting("优先幼年", false);
+    public final BooleanSetting morePart        = new BooleanSetting("更多粒子", false);
+    public final BooleanSetting keepSprint      = new BooleanSetting("保持疾跑", true);
+    public final BooleanSetting ignoreSkipTicks = new BooleanSetting("忽略跳过刻", false);
+    public final BooleanSetting fakeAutoBlock   = new BooleanSetting("假自动格挡", true);
+    public final BooleanSetting test            = new BooleanSetting("测试", false);
+    public final NumberSetting aimRange    = new NumberSetting("瞄准范围", 4.0, 1.0, 6.0, 0.1);
+    public final NumberSetting maxAps      = new NumberSetting("最大APS", 12.0, 1.0, 20.0, 1.0);
+    public final NumberSetting minAps      = new NumberSetting("最小APS", 9.0, 1.0, 20.0, 1.0);
+    public final NumberSetting switchSize  = new NumberSetting("切换大小", 1.0, 1.0, 5.0, 1.0,
             () -> !(Boolean) this.infSwitch.getValue());
-    public final NumberSetting switchDelay = new NumberSetting("Switch Delay (Attack Times)", 1.0, 1.0, 10.0, 1.0);
-    public final NumberSetting fov         = new NumberSetting("FoV", 360.0, 10.0, 360.0, 1.0);
-    public final NumberSetting hurtTime    = new NumberSetting("Hurt Time", 10.0, 0.0, 10.0, 1.0);
-    public final ModeSetting delayMode    = new ModeSetting("Delay Mode", "1.8", "1.9").withDefault("1.8");
-    public final ModeSetting priorityMode = new ModeSetting("Priority", "Distance", "FoV", "Health", "None").withDefault("FoV");
-    public final ModeSetting targetEsp    = new ModeSetting("Target ESP", "None", "Spiral", "Box", "Tab").withDefault("None");
+    public final NumberSetting switchDelay = new NumberSetting("切换延迟（攻击次数）", 1.0, 1.0, 10.0, 1.0);
+    public final NumberSetting fov         = new NumberSetting("视野", 360.0, 10.0, 360.0, 1.0);
+    public final NumberSetting hurtTime    = new NumberSetting("受伤时间", 10.0, 0.0, 10.0, 1.0);
+    public final ModeSetting delayMode    = new ModeSetting("延迟模式", "1.8", "1.9").withDefault("1.8");
+    public final ModeSetting priorityMode = new ModeSetting("优先级", "距离", "视野", "生命值", "无").withDefault("视野");
+    public final ModeSetting targetEsp    = new ModeSetting("目标透视", "无", "螺旋", "盒子", "标签").withDefault("无");
 
     private RotationUtil.BestHitInfo currentBestHit;
     private RotationUtil.BestHitInfo prevBestHit;
@@ -100,7 +100,7 @@ public class KillAura extends Module {
     public Rotation rotation;
 
     public KillAura() {
-        super("KillAura", Category.COMBAT);
+        super("杀戮光环", Category.COMBAT);
         INSTANCE = this;
     }
 
@@ -136,7 +136,7 @@ public class KillAura extends Module {
 
     @EventTarget
     public void onRender(RenderEvent event) {
-        if (this.targetEsp.is("None")) return;
+        if (this.targetEsp.is("无")) return;
         Entity entity = aimingTarget;
         if (entity == null || mc.gameRenderer == null) return;
         PoseStack poseStack = event.poseStack();
@@ -156,8 +156,8 @@ public class KillAura extends Module {
 
         String mode = this.targetEsp.getValue();
         switch (mode) {
-            case "Spiral" -> RenderUtil.drawSpiralEffect(poseStack, entity, event.partialTick());
-            case "Box" -> {
+            case "螺旋" -> RenderUtil.drawSpiralEffect(poseStack, entity, event.partialTick());
+            case "盒子" -> {
                 int hurtTime = entity instanceof LivingEntity le ? le.hurtTime : 0;
                 Color color;
                 if (hurtTime == 0) {
@@ -173,7 +173,7 @@ public class KillAura extends Module {
                         base.maxX + 0.175, base.maxY + 0.225, base.maxZ + 0.175);
                 RenderUtil.drawFilledColoredBox(padded, poseStack, color, color);
             }
-            case "Tab" -> {
+            case "标签" -> {
                 int hurtTime = entity instanceof LivingEntity le ? le.hurtTime : 0;
                 Color color;
                 if (hurtTime == 0) {
@@ -324,7 +324,7 @@ public class KillAura extends Module {
         if (hitResult != null && hitResult.getType() == HitResult.Type.ENTITY) {
             Entity hitEntity = ((EntityHitResult) hitResult).getEntity();
             if (AntiBots.isBot(hitEntity)) {
-                ChatUtil.print("Skipped attack on suspected bot");
+                ChatUtil.print("跳过了对疑似假人的攻击");
                 return;
             }
         }
@@ -464,11 +464,11 @@ public class KillAura extends Module {
         Stream<Entity> stream = StreamSupport.stream(mc.level.entitiesForRendering().spliterator(), true)
                 .filter(this::isValidAttack);
         List<Entity> possibleTargets = stream.collect(Collectors.toList());
-        if (this.priorityMode.is("Distance")) {
+        if (this.priorityMode.is("距离")) {
             possibleTargets.sort(Comparator.comparingDouble(KillAura::getDistanceToPlayer));
-        } else if (this.priorityMode.is("FoV")) {
+        } else if (this.priorityMode.is("视野")) {
             possibleTargets.sort(Comparator.comparingDouble(KillAura::getAngleDiffToTarget));
-        } else if (this.priorityMode.is("Health")) {
+        } else if (this.priorityMode.is("生命值")) {
             possibleTargets.sort(Comparator.comparingDouble(KillAura::getEntityHealth));
         }
         if (this.preferBaby.getValue()

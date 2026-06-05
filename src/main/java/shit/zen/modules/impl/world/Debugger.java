@@ -14,7 +14,7 @@ import shit.zen.event.EventTarget;
 public class Debugger
 extends Module {
     public Debugger() {
-        super("Debugger", Category.WORLD);
+        super("调试器", Category.WORLD);
     }
 
     @EventTarget

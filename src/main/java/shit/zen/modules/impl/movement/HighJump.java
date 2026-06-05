@@ -24,7 +24,7 @@ extends Module {
     public int fallbackTicks;
 
     public HighJump() {
-        super("HighJump", Category.MOVEMENT);
+        super("高跳", Category.MOVEMENT);
         INSTANCE = this;
     }
 

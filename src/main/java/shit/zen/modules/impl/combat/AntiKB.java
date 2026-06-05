@@ -29,18 +29,18 @@ extends Module {
     public static AntiKB INSTANCE;
     public static Rotation rotation;
     public static ModeSetting mode;
-    public final BooleanSetting autoJump = new BooleanSetting("Auto Jump", false, () -> mode.is("Grim Full") || mode.is("Grim Fast"));
-    public final BooleanSetting rotate = new BooleanSetting("Rotate", false, () -> mode.is("Jump Reset") || mode.is("Mix"));
-    public final BooleanSetting tryAttack = new BooleanSetting("Try Attack", false, () -> mode.is("Mix"));
-    public final BooleanSetting movementOverride = new BooleanSetting("Movement Override", false, () -> mode.is("Mix"));
-    public final BooleanSetting followDirection = new BooleanSetting("Follow Direction", false, () -> mode.is("Jump Reset"));
-    public final NumberSetting rotateTicks = new NumberSetting("Rotate Ticks", 12, 3, 20, 1, () -> mode.is("Jump Reset") && (this.rotate.getValue() != false || this.followDirection.getValue() != false));
-    public final NumberSetting attackAmount = new NumberSetting("Attack amount", 5.0, 1.0, 20.0, 1, () -> mode.is("NoXZ"));
-    public final BooleanSetting instantAttack = new BooleanSetting("Instant Attack", false, () -> mode.is("NoXZ"));
-    public final BooleanSetting sprintStateCheck = new BooleanSetting("Sprint state check", true, () -> mode.is("NoXZ"));
+    public final BooleanSetting autoJump = new BooleanSetting("自动跳跃", false, () -> mode.is("Grim Full") || mode.is("Grim Fast"));
+    public final BooleanSetting rotate = new BooleanSetting("旋转", false, () -> mode.is("跳跃重置") || mode.is("混合"));
+    public final BooleanSetting tryAttack = new BooleanSetting("尝试攻击", false, () -> mode.is("混合"));
+    public final BooleanSetting movementOverride = new BooleanSetting("移动覆盖", false, () -> mode.is("混合"));
+    public final BooleanSetting followDirection = new BooleanSetting("跟随方向", false, () -> mode.is("跳跃重置"));
+    public final NumberSetting rotateTicks = new NumberSetting("旋转刻数", 12, 3, 20, 1, () -> mode.is("跳跃重置") && (this.rotate.getValue() != false || this.followDirection.getValue() != false));
+    public final NumberSetting attackAmount = new NumberSetting("攻击次数", 5.0, 1.0, 20.0, 1, () -> mode.is("NoXZ"));
+    public final BooleanSetting instantAttack = new BooleanSetting("瞬间攻击", false, () -> mode.is("NoXZ"));
+    public final BooleanSetting sprintStateCheck = new BooleanSetting("疾跑状态检查", true, () -> mode.is("NoXZ"));
 
     public AntiKB() {
-        super("AntiKB", Category.COMBAT);
+        super("击退抵抗", Category.COMBAT);
         INSTANCE = this;
         AntiKBMode.initModes();
     }
@@ -168,6 +168,6 @@ extends Module {
     }
 
     static {
-        mode = new ModeSetting("Mode", "Jump Reset", "Mix", "NoXZ").withDefault("NoXZ");
+        mode = new ModeSetting("模式", "跳跃重置", "混合", "NoXZ").withDefault("NoXZ");
     }
 }

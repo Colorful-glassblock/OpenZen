@@ -58,13 +58,13 @@ import shit.zen.event.EventTarget;
 public class Scaffold extends Module {
     public static Scaffold INSTANCE;
 
-    public final ModeSetting mode = new ModeSetting("Mode", "Normal", "Telly Bridge", "Old Telly", "Keep Y").withDefault("Normal");
-    public final BooleanSetting eagle = new BooleanSetting("Eagle", true, () -> this.mode.is("Normal"));
-    public final BooleanSetting sneak = new BooleanSetting("Sneak", true);
-    public final BooleanSetting snap = new BooleanSetting("Snap", true, () -> this.mode.is("Normal"));
-    public final BooleanSetting renderItemSpoof = new BooleanSetting("Render Item Spoof", true);
-    public final NumberSetting rotationTick = new NumberSetting("Rotation Tick", 3, 1, 6, 1);
-    public final BooleanSetting clutch = new BooleanSetting("Clutch", true);
+    public final ModeSetting mode = new ModeSetting("模式", "普通", "Telly搭桥", "旧版Telly", "保持Y轴").withDefault("普通");
+    public final BooleanSetting eagle = new BooleanSetting("老鹰", true, () -> this.mode.is("普通"));
+    public final BooleanSetting sneak = new BooleanSetting("潜行", true);
+    public final BooleanSetting snap = new BooleanSetting("对齐", true, () -> this.mode.is("普通"));
+    public final BooleanSetting renderItemSpoof = new BooleanSetting("渲染物品伪装", true);
+    public final NumberSetting rotationTick = new NumberSetting("旋转刻数", 3, 1, 6, 1);
+    public final BooleanSetting clutch = new BooleanSetting("急停", true);
 
     public Rotation correctRotation = new Rotation();
     public Rotation rots = new Rotation();
@@ -87,7 +87,7 @@ public class Scaffold extends Module {
     private boolean canBuildNow;
 
     public Scaffold() {
-        super("Scaffold", Category.MOVEMENT);
+        super("搭路", Category.MOVEMENT);
         INSTANCE = this;
     }
 
@@ -200,7 +200,7 @@ public class Scaffold extends Module {
                 || mc.player.onGround()
                 || !MovementUtil.isMoving()
                 || jumpHeld
-                || this.mode.is("Normal")) {
+                || this.mode.is("普通")) {
             this.targetYLevel = (int) Math.floor(mc.player.getY()) - 1;
         }
 
@@ -222,7 +222,7 @@ public class Scaffold extends Module {
         if (mc.player.onGround()) {
             this.canBuildNow = true;
         }
-        this.correctRotation = this.mode.is("Telly Bridge") && this.canBuildNow
+        this.correctRotation = this.mode.is("Telly搭桥") && this.canBuildNow
                 ? this.getTargetRotation(firstGroundTick)
                 : this.getPlayerYawRotation();
 
@@ -255,7 +255,7 @@ public class Scaffold extends Module {
             this.canBuildNow = true;
             ClientBase.delayPackets.clear();
             this.rotationDelay = 0;
-            if (this.mode.is("Normal") && this.snap.getValue()) {
+            if (this.mode.is("普通") && this.snap.getValue()) {
                 this.rots.setYaw(this.correctRotation.getYaw());
             } else {
                 this.rots.setYaw(RotationUtil.moveTowards((float) this.getBlockDistance(), this.rots.getYaw(), this.correctRotation.getYaw()));
@@ -274,16 +274,16 @@ public class Scaffold extends Module {
                     this.eagleTimer = 0;
                 }
             }
-            if (this.mode.is("Telly Bridge") || this.mode.is("Old Telly")) {
+            if (this.mode.is("Telly搭桥") || this.mode.is("旧版Telly")) {
                 mc.options.keyJump.setDown(MovementUtil.isMoving() || jumpHeld);
                 if (this.airTicks < 1 && MovementUtil.isMoving()) {
-                    if (this.mode.is("Old Telly")) {
+                    if (this.mode.is("旧版Telly")) {
                         this.rots.setYaw(mc.player.getYRot());
                     }
                     this.lastRots.setYawPitch(this.rots.getYaw(), this.rots.getPitch());
                     return;
                 }
-            } else if (this.mode.is("Keep Y")) {
+            } else if (this.mode.is("保持Y轴")) {
                 mc.options.keyJump.setDown(MovementUtil.isMoving() || jumpHeld);
             } else {
                 if (this.eagle.getValue()) {
@@ -298,7 +298,7 @@ public class Scaffold extends Module {
     }
 
     private double getBlockDistance() {
-        if (this.mode.is("Old Telly")) return 180.0;
+        if (this.mode.is("旧版Telly")) return 180.0;
         double base = Math.max(60.0, 360.0 / this.rotationTick.getValue().doubleValue());
         return Math.max(base, 180.0);
     }
@@ -307,10 +307,10 @@ public class Scaffold extends Module {
     public void onPreMotion(PreMotionEvent event) {
         event.setCancelled(true);
         if (mc.screen != null || mc.player == null || this.currentPlacement == null) return;
-        if ((this.mode.is("Telly Bridge") || this.mode.is("Old Telly")) && this.airTicks < 1) return;
+        if ((this.mode.is("Telly搭桥") || this.mode.is("旧版Telly")) && this.airTicks < 1) return;
         boolean canRayTrace = RayTraceUtil.canRayTrace(RotationHandler.targetRotation, this.currentPlacement.facing, this.currentPlacement.position, false);
         if (!this.canBuildNow && !this.isPlacementReachable(this.currentPlacement)) return;
-        if (this.rotationDelay <= 0 && !this.mode.is("Old Telly") && !canRayTrace) return;
+        if (this.rotationDelay <= 0 && !this.mode.is("旧版Telly") && !canRayTrace) return;
         this.doSnap();
     }
 
@@ -475,7 +475,7 @@ public class Scaffold extends Module {
         Direction facing = this.currentPlacement.facing;
         boolean jumpHeld = InputConstants.isKeyDown(mc.getWindow().getWindow(), mc.options.keyJump.getKey().getValue());
         if (facing == null) return;
-        if (facing == Direction.UP && !mc.player.onGround() && MovementUtil.isMoving() && !jumpHeld && !this.mode.is("Normal")) {
+        if (facing == Direction.UP && !mc.player.onGround() && MovementUtil.isMoving() && !jumpHeld && !this.mode.is("普通")) {
             return;
         }
         if (!this.shouldBuild()) return;
@@ -539,7 +539,7 @@ public class Scaffold extends Module {
                 : new Rotation(mc.player.getYRot(), mc.player.getXRot()));
         Rotation optimal = this.getOptimalRotation(rotation, reference.getYaw());
         double maxStep = Math.max(45.0, 180.0 / Math.max(1.0, this.rotationTick.getValue().doubleValue()));
-        if (this.mode.is("Telly Bridge")) {
+        if (this.mode.is("Telly搭桥")) {
             maxStep = Math.max(maxStep, 75.0);
         }
         return RotationUtil.smoothRotation(reference, optimal, maxStep);

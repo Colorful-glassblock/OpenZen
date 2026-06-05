@@ -44,7 +44,7 @@ public class AntiWeb extends Module {
     private BlockPos waterSourcePos = null;
 
     public AntiWeb() {
-        super("AntiWeb", Category.PLAYER);
+        super("反蛛网", Category.PLAYER);
         INSTANCE = this;
     }
 
@@ -131,7 +131,7 @@ public class AntiWeb extends Module {
                 this.placementTimer.reset();
                 this.pickupTimer.reset();
             } else {
-                ChatUtil.print("Could not find water source!");
+                ChatUtil.print("找不到水源！");
                 this.reset();
             }
         }
@@ -164,7 +164,7 @@ public class AntiWeb extends Module {
             }
             case RECYCLING -> {
                 if (this.pickupTimer.hasPassed(20)) {
-                    ChatUtil.print("§cPickup water timeout after 20 ticks, giving up!");
+                    ChatUtil.print("§c拾取水源超时（20刻后），放弃！");
                     this.reset();
                     return;
                 }
@@ -173,7 +173,7 @@ public class AntiWeb extends Module {
                     return;
                 }
                 if (this.waterSourcePos == null || !mc.level.getBlockState(this.waterSourcePos).is(Blocks.WATER)) {
-                    ChatUtil.print("Failed to recycle water!");
+                    ChatUtil.print("回收水源失败！");
                     this.reset();
                     return;
                 }
@@ -189,7 +189,7 @@ public class AntiWeb extends Module {
                     this.placementTimer.reset();
                 }
                 if (this.sentUsePacket && !this.placementTimer.hasPassed(5)) break;
-                ChatUtil.print("Trying to recycle water...");
+                ChatUtil.print("正在尝试回收水源...");
                 PacketUtil.sendPredictive(n -> new ServerboundUseItemPacket(InteractionHand.MAIN_HAND, n));
                 this.sentUsePacket = true;
                 this.placementTimer.reset();

@@ -21,16 +21,16 @@ import shit.zen.utils.misc.UnsafeUtil;
 import shit.zen.event.EventTarget;
 
 public class AutoClicker extends Module {
-    private final NumberSetting cps = new NumberSetting("CPS", 7, 4, 25, 1);
-    private final ModeSetting clickSide = new ModeSetting("Mode", "Left", "Right", "Both").withDefault("Left");
-    private final ModeSetting clickMethod = new ModeSetting("Click Mode", "Method", "Key", "Mouse").withDefault("Key");
-    private final ModeSetting cpsMode = new ModeSetting("CPS Mode", "Normal", "DBC").withDefault("Normal");
-    private final BooleanSetting breakBlock = new BooleanSetting("Break Block", true);
+    private final NumberSetting cps = new NumberSetting("每秒点击数", 7, 4, 25, 1);
+    private final ModeSetting clickSide = new ModeSetting("模式", "左侧", "右侧", "两者").withDefault("左侧");
+    private final ModeSetting clickMethod = new ModeSetting("点击模式", "方法", "按键", "鼠标").withDefault("按键");
+    private final ModeSetting cpsMode = new ModeSetting("CPS模式", "普通", "DBC").withDefault("普通");
+    private final BooleanSetting breakBlock = new BooleanSetting("破坏方块", true);
     private final Timer leftClickTimer = new Timer();
     private final Timer rightClickTimer = new Timer();
 
     public AutoClicker() {
-        super("AutoClicker", Category.MISC);
+        super("自动点击", Category.MISC);
     }
 
     @Override
@@ -48,12 +48,12 @@ public class AutoClicker extends Module {
         if (mc.player == null || mc.level == null) {
             return;
         }
-        if (this.clickSide.is("Normal")) {
-            this.clickSide.setValue("Key");
+        if (this.clickSide.is("普通")) {
+            this.clickSide.setValue("按键");
         }
-        if (this.clickSide.is("Left")) {
+        if (this.clickSide.is("左侧")) {
             this.doLeftClick();
-        } else if (this.clickSide.is("Right")) {
+        } else if (this.clickSide.is("右侧")) {
             this.doRightClick();
         } else {
             this.doLeftClick();
@@ -78,10 +78,10 @@ public class AutoClicker extends Module {
             case "Method":
                 this.invokeStartAttack();
                 break;
-            case "Key":
+            case "按键":
                 KeyMapping.click(mc.options.keyAttack.getKey());
                 break;
-            case "Mouse":
+            case "鼠标":
                 ForgeHooksClient.onMouseButtonPre(mc.options.keyAttack.getKey().getValue(), 1, 0);
                 KeyMapping.click(mc.options.keyAttack.getKey());
                 ForgeHooksClient.onMouseButtonPost(mc.options.keyAttack.getKey().getValue(), 1, 0);
@@ -124,10 +124,10 @@ public class AutoClicker extends Module {
             case "Method":
                 this.invokeStartUseItem();
                 break;
-            case "Key":
+            case "按键":
                 KeyMapping.click(mc.options.keyUse.getKey());
                 break;
-            case "Mouse":
+            case "鼠标":
                 ForgeHooksClient.onMouseButtonPre(mc.options.keyUse.getKey().getValue(), 1, 0);
                 KeyMapping.click(mc.options.keyUse.getKey());
                 ForgeHooksClient.onMouseButtonPost(mc.options.keyUse.getKey().getValue(), 1, 0);

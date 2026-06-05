@@ -33,12 +33,12 @@ public class SimpleNameTag extends NameTagStyle {
     private Paint paint;
 
     public SimpleNameTag() {
-        super("Simple");
+        super("简单");
     }
 
     @Override
     public String getName() {
-        return "Simple";
+        return "简单";
     }
 
     @Override

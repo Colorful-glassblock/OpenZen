@@ -55,16 +55,16 @@ extends Module {
 
     public static ChestStealer INSTANCE;
     private static final Timer actionTimer;
-    private final NumberSetting clickDelaySetting = new NumberSetting("Delay", 200, 0, 1000, 10);
-    private final NumberSetting openDelaySetting = new NumberSetting("Open Delay", 2, 0, 10, 1);
-    private final BooleanSetting chestSetting = new BooleanSetting("Chest", true);
-    private final BooleanSetting enderChestSetting = new BooleanSetting("Ender Chest", false);
-    private final BooleanSetting furnaceSetting = new BooleanSetting("Furnace", true);
-    private final BooleanSetting brewingStandSetting = new BooleanSetting("BrewingStand", true);
-    private final BooleanSetting pickTrashSetting = new BooleanSetting("PickTrash", false);
-    private final BooleanSetting onlyBestSetting = new BooleanSetting("Only Best", true);
-    private final BooleanSetting randomClickSetting = new BooleanSetting("Random Click", false);
-    private final BooleanSetting smartStealingSetting = new BooleanSetting("Smart Stealing", true);
+    private final NumberSetting clickDelaySetting = new NumberSetting("延迟", 200, 0, 1000, 10);
+    private final NumberSetting openDelaySetting = new NumberSetting("打开延迟", 2, 0, 10, 1);
+    private final BooleanSetting chestSetting = new BooleanSetting("箱子", true);
+    private final BooleanSetting enderChestSetting = new BooleanSetting("末影箱", false);
+    private final BooleanSetting furnaceSetting = new BooleanSetting("熔炉", true);
+    private final BooleanSetting brewingStandSetting = new BooleanSetting("酿造台", true);
+    private final BooleanSetting pickTrashSetting = new BooleanSetting("拾取垃圾", false);
+    private final BooleanSetting onlyBestSetting = new BooleanSetting("仅最佳", true);
+    private final BooleanSetting randomClickSetting = new BooleanSetting("随机点击", false);
+    private final BooleanSetting smartStealingSetting = new BooleanSetting("智能偷取", true);
     private static final Timer stealTimer;
     private static final Timer openTimer;
     private final Random random = new Random();
@@ -82,7 +82,7 @@ extends Module {
     private boolean queueBuilt = false;
 
     public ChestStealer() {
-        super("ChestStealer", Category.PLAYER);
+        super("箱子偷取", Category.PLAYER);
         INSTANCE = this;
     }
 
@@ -142,7 +142,7 @@ extends Module {
                 String doubleChestTitle = Component.translatable("container.chestDouble").getString();
                 String enderChestTitle = Component.translatable("container.enderchest").getString();
                 ChestMenu chestMenu = containerScreen.getMenu();
-                if (this.chestSetting.getValue() && (title.equals(chestTitle) || title.equals(doubleChestTitle) || title.equals("Chest"))) {
+                if (this.chestSetting.getValue() && (title.equals(chestTitle) || title.equals(doubleChestTitle) || title.equals("箱子"))) {
                     if (this.shouldCloseChest(chestMenu)) {
                         this.stealFromChest(chestMenu);
                     }

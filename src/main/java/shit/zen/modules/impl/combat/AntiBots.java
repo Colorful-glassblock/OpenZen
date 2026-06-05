@@ -26,8 +26,8 @@ import shit.zen.event.EventTarget;
 public class AntiBots
 extends Module {
     public static AntiBots INSTANCE;
-    private final NumberSetting newPlayerTimeout = new NumberSetting("Respawn Time", 2500.0, 0.0, 10000.0, 100.0);
-    private final BooleanSetting debug = new BooleanSetting("Debug", true);
+    private final NumberSetting newPlayerTimeout = new NumberSetting("重生时间", 2500.0, 0.0, 10000.0, 100.0);
+    private final BooleanSetting debug = new BooleanSetting("调试", true);
     private static final Map<UUID, String> suspectNames;
     private static final Map<Integer, String> confirmedBotNames;
     private static final Map<UUID, Long> suspectJoinTimes;
@@ -35,7 +35,7 @@ extends Module {
     private static final Map<UUID, Long> playerAddTimes;
 
     public AntiBots() {
-        super("AntiBots", Category.COMBAT);
+        super("反假人", Category.COMBAT);
         INSTANCE = this;
     }
 
@@ -109,7 +109,7 @@ extends Module {
             for (Map.Entry<UUID, Long> entry : suspectJoinTimes.entrySet()) {
                 if (System.currentTimeMillis() - entry.getValue() <= 500L) continue;
                 if (this.debug.getValue()) {
-                    ChatUtil.print("Fake Staff Detected! (" + suspectNames.get(entry.getKey()) + ")");
+                    ChatUtil.print("检测到假工作人员！(" + suspectNames.get(entry.getKey()) + ")");
                 }
                 suspectJoinTimes.remove(entry.getKey());
             }
@@ -152,7 +152,7 @@ extends Module {
             }
             String botName = suspectNames.get(addPlayer.getPlayerId());
             if (this.debug.getValue()) {
-                ChatUtil.print("Bot Detected! (" + botName + ")");
+                ChatUtil.print("检测到假人！(" + botName + ")");
             }
             confirmedBotNames.put(addPlayer.getEntityId(), botName);
             suspectJoinTimes.remove(addPlayer.getPlayerId());
@@ -164,7 +164,7 @@ extends Module {
                 if (!confirmedBotIds.contains(entityId)) continue;
                 String name = confirmedBotNames.get(entityId);
                 if (this.debug.getValue()) {
-                    ChatUtil.print("Bot Removed! (" + name + ")");
+                    ChatUtil.print("已移除假人！(" + name + ")");
                 }
                 confirmedBotIds.remove(entityId);
             }

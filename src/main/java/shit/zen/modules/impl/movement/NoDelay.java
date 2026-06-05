@@ -7,10 +7,10 @@ import shit.zen.settings.impl.BooleanSetting;
 public class NoDelay
 extends Module {
     public static NoDelay INSTANCE;
-    public final BooleanSetting fastDig = new BooleanSetting("No Jump Delay", true);
+    public final BooleanSetting fastDig = new BooleanSetting("无跳跃延迟", true);
 
     public NoDelay() {
-        super("NoDelay", Category.MOVEMENT);
+        super("无延迟", Category.MOVEMENT);
         INSTANCE = this;
     }
 }

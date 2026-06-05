@@ -30,7 +30,7 @@ extends HelperBase {
     public ExtinguishFire.State currentState = ExtinguishFire.State.NONE;
     private boolean isAiming = false;
     private int aimDelay = 0;
-    private static final String NAME = "Extinguish Fire";
+    private static final String NAME = "扑灭火焰";
 
     public ExtinguishFire() {
         super(NAME);

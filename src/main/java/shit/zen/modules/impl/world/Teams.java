@@ -14,7 +14,7 @@ extends Module {
     public static ModeSetting mode;
 
     public Teams() {
-        super("Teams", Category.WORLD);
+        super("队伍识别", Category.WORLD);
         instance = this;
     }
 
@@ -23,7 +23,7 @@ extends Module {
             return false;
         }
         if (entity instanceof Player) {
-            if (mode.is("Color")) {
+            if (mode.is("颜色")) {
                 Integer n = entity.getTeamColor();
                 Integer n2 = mc.player.getTeamColor();
                 return n.equals(n2);
@@ -47,6 +47,6 @@ extends Module {
     }
 
     static {
-        mode = new ModeSetting("Mode", "Color", "Scoreboard").withDefault("Scoreboard");
+        mode = new ModeSetting("模式", "颜色", "计分板").withDefault("计分板");
     }
 }

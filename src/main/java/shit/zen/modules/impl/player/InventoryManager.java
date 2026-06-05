@@ -61,30 +61,30 @@ import shit.zen.event.EventTarget;
 public class InventoryManager extends Module {
     public static InventoryManager INSTANCE;
 
-    private final NumberSetting actionDelaySetting = new NumberSetting("Delay", 200, 0, 500, 10);
-    private final NumberSetting sprintDelayTicksSetting = new NumberSetting("Open Delay", 2, 0, 10, 1);
-    private final NumberSetting dropDelaySetting = new NumberSetting("Drop Delay", 200, 0, 500, 10);
-    private final BooleanSetting autoArmorSetting = new BooleanSetting("Auto Armor", true);
-    private final BooleanSetting throwItemsSetting = new BooleanSetting("Throw Items", true);
-    private final ModeSetting offhandItemSetting = new ModeSetting("Offhand Items", "Golden Apple", "Fishing Rod", "None").withDefault("Projectile");
-    private final ModeSetting bowPrioritySetting = new ModeSetting("Bow Priority", "Crossbow", "Punch Bow").withDefault("Crossbow");
-    private final BooleanSetting inventoryOnlySetting = new BooleanSetting("Inventory Only", true);
-    private final BooleanSetting fastThrowSetting = new BooleanSetting("Fast Throw", false);
-    private final NumberSetting maxEggsSnowballsSetting = new NumberSetting("Max Eggs & Snowballs Size", 64, 16, 256, 16);
-    public final NumberSetting maxBlockSizeSetting = new NumberSetting("Max Block Size", 256, 64, 512, 64);
-    private final NumberSetting maxFoodSizeSetting = new NumberSetting("Max Food Size", 128, 32, 256, 32);
-    private final NumberSetting maxRodSizeSetting = new NumberSetting("Max Rod Size", 1, 1, 16, 1);
-    private final NumberSetting swordSlotSetting = new NumberSetting("Sword Slot", 0, 0, 9, 1);
-    private final NumberSetting blockSlotSetting = new NumberSetting("Block Slot", 0, 0, 9, 1);
-    private final NumberSetting axeSlotSetting = new NumberSetting("Axe Slot", 0, 0, 9, 1);
-    private final NumberSetting pickaxeSlotSetting = new NumberSetting("Pickaxe Slot", 0, 0, 9, 1);
-    private final NumberSetting bowSlotSetting = new NumberSetting("Bow Slot", 0, 0, 9, 1);
-    private final NumberSetting waterBucketSlotSetting = new NumberSetting("Water Bucket Slot", 0, 0, 9, 1);
-    private final NumberSetting pearlSlotSetting = new NumberSetting("Ender Pearl Slot", 0, 0, 9, 1);
-    private final NumberSetting goldenAppleSlotSetting = new NumberSetting("Golden Apple Slot", 0, 0, 9, 1);
-    private final NumberSetting eggsSnowballsSlotSetting = new NumberSetting("Eggs & Snowballs Slot", 0, 0, 9, 1);
-    private final NumberSetting slimeBallSlotSetting = new NumberSetting("Slime Ball Slot", 0, 0, 9, 1);
-    private final NumberSetting crystalSlotSetting = new NumberSetting("Crystal Slot", 0, 0, 9, 1);
+    private final NumberSetting actionDelaySetting = new NumberSetting("延迟", 200, 0, 500, 10);
+    private final NumberSetting sprintDelayTicksSetting = new NumberSetting("打开延迟", 2, 0, 10, 1);
+    private final NumberSetting dropDelaySetting = new NumberSetting("丢弃延迟", 200, 0, 500, 10);
+    private final BooleanSetting autoArmorSetting = new BooleanSetting("自动护甲", true);
+    private final BooleanSetting throwItemsSetting = new BooleanSetting("丢弃物品", true);
+    private final ModeSetting offhandItemSetting = new ModeSetting("副手物品", "金苹果", "钓鱼竿", "无").withDefault("弹射物");
+    private final ModeSetting bowPrioritySetting = new ModeSetting("弓优先级", "弩", "击退弓").withDefault("弩");
+    private final BooleanSetting inventoryOnlySetting = new BooleanSetting("仅背包", true);
+    private final BooleanSetting fastThrowSetting = new BooleanSetting("快速丢弃", false);
+    private final NumberSetting maxEggsSnowballsSetting = new NumberSetting("最大鸡蛋和雪球数量", 64, 16, 256, 16);
+    public final NumberSetting maxBlockSizeSetting = new NumberSetting("最大方块数量", 256, 64, 512, 64);
+    private final NumberSetting maxFoodSizeSetting = new NumberSetting("最大食物数量", 128, 32, 256, 32);
+    private final NumberSetting maxRodSizeSetting = new NumberSetting("最大鱼竿数量", 1, 1, 16, 1);
+    private final NumberSetting swordSlotSetting = new NumberSetting("剑槽位", 0, 0, 9, 1);
+    private final NumberSetting blockSlotSetting = new NumberSetting("方块槽位", 0, 0, 9, 1);
+    private final NumberSetting axeSlotSetting = new NumberSetting("斧槽位", 0, 0, 9, 1);
+    private final NumberSetting pickaxeSlotSetting = new NumberSetting("镐槽位", 0, 0, 9, 1);
+    private final NumberSetting bowSlotSetting = new NumberSetting("弓槽位", 0, 0, 9, 1);
+    private final NumberSetting waterBucketSlotSetting = new NumberSetting("水桶槽位", 0, 0, 9, 1);
+    private final NumberSetting pearlSlotSetting = new NumberSetting("末影珍珠槽位", 0, 0, 9, 1);
+    private final NumberSetting goldenAppleSlotSetting = new NumberSetting("金苹果槽位", 0, 0, 9, 1);
+    private final NumberSetting eggsSnowballsSlotSetting = new NumberSetting("鸡蛋和雪球槽位", 0, 0, 9, 1);
+    private final NumberSetting slimeBallSlotSetting = new NumberSetting("粘液球槽位", 0, 0, 9, 1);
+    private final NumberSetting crystalSlotSetting = new NumberSetting("水晶槽位", 0, 0, 9, 1);
 
     private static final Timer actionTimer = new Timer();
 
@@ -100,7 +100,7 @@ public class InventoryManager extends Module {
     private int sprintDelayTicks = 0;
 
     public InventoryManager() {
-        super("InventoryManager", Category.PLAYER, 66);
+        super("背包管理", Category.PLAYER, 66);
         INSTANCE = this;
     }
 
@@ -177,7 +177,7 @@ public class InventoryManager extends Module {
         if (!externalContainerOpen
                 && (packet instanceof ServerboundContainerClickPacket
                         || packet instanceof ServerboundContainerClosePacket)) {
-            ChatUtil.print("Cancelled Inventory Packet: " + packet.getClass().getName());
+            ChatUtil.print("已取消背包数据包: " + packet.getClass().getName());
             event.setCancelled(true);
             Packet<ServerGamePacketListener> typed = (Packet<ServerGamePacketListener>) packet;
             this.pendingPackets.add(typed);
@@ -210,7 +210,7 @@ public class InventoryManager extends Module {
         }
         while (!this.pendingPackets.isEmpty()) {
             Packet<ServerGamePacketListener> packet = this.pendingPackets.poll();
-            ChatUtil.print("Releasing Packet: " + packet.getClass().getName());
+            ChatUtil.print("释放数据包: " + packet.getClass().getName());
             PacketUtil.sendQueued(packet);
         }
         PacketUtil.sendQueued(new ServerboundContainerClosePacket(mc.player.inventoryMenu.containerId));
@@ -228,7 +228,7 @@ public class InventoryManager extends Module {
         entries.add(Pair.of(this.slimeBallSlotSetting.getValue().intValue() != 0, this.slimeBallSlotSetting));
         entries.add(Pair.of(this.crystalSlotSetting.getValue().intValue() != 0, this.crystalSlotSetting));
         entries.add(Pair.of(this.eggsSnowballsSlotSetting.getValue().intValue() != 0, this.eggsSnowballsSlotSetting));
-        if (!"Golden Apple".equals(this.offhandItemSetting.getValue())) {
+        if (!"金苹果".equals(this.offhandItemSetting.getValue())) {
             entries.add(Pair.of(this.goldenAppleSlotSetting.getValue().intValue() != 0, this.goldenAppleSlotSetting));
         }
         if (!"Block".equals(this.offhandItemSetting.getValue())) {
@@ -272,7 +272,7 @@ public class InventoryManager extends Module {
             String title = containerScreen.getTitle().getString();
             String chest = Component.translatable("container.chest").getString();
             String chestDouble = Component.translatable("container.chestDouble").getString();
-            if (title.equals(chest) || title.equals(chestDouble) || title.equals("Chest")) {
+            if (title.equals(chest) || title.equals(chestDouble) || title.equals("箱子")) {
                 externalContainerOpen = true;
             }
         }
@@ -364,7 +364,7 @@ public class InventoryManager extends Module {
 
         // --- offhand preference ---
         String offhandPref = this.offhandItemSetting.getValue();
-        if ("Golden Apple".equals(offhandPref)) {
+        if ("金苹果".equals(offhandPref)) {
             ItemStack offhand = mc.player.getInventory().offhand.get(0);
             int slot = ItemUtil.getSlot(Items.GOLDEN_APPLE);
             if (slot != -1 && actionTimer.hasPassed(this.actionDelaySetting.getValue().intValue())) {
@@ -383,7 +383,7 @@ public class InventoryManager extends Module {
                     return true;
                 }
             }
-        } else if ("Projectile".equals(offhandPref)) {
+        } else if ("弹射物".equals(offhandPref)) {
             ItemStack offhand = mc.player.getInventory().offhand.get(0);
             ItemStack bestProjectile = ItemUtil.getBestProjectile();
             if (bestProjectile != null) {
@@ -400,7 +400,7 @@ public class InventoryManager extends Module {
                     return true;
                 }
             }
-        } else if ("Fishing Rod".equals(offhandPref)) {
+        } else if ("钓鱼竿".equals(offhandPref)) {
             ItemStack offhand = mc.player.getInventory().offhand.get(0);
             int slot = ItemUtil.getSlot(Items.FISHING_ROD);
             if (slot != -1
@@ -429,7 +429,7 @@ public class InventoryManager extends Module {
         }
 
         // --- hotbar slot assignments ---
-        if (!"Golden Apple".equals(this.offhandItemSetting.getValue())
+        if (!"金苹果".equals(this.offhandItemSetting.getValue())
                 && this.goldenAppleSlotSetting.getValue().intValue() != 0) {
             this.swapItemToSlot(this.goldenAppleSlotSetting.getValue().intValue() - 1, Items.GOLDEN_APPLE);
         }
@@ -500,7 +500,7 @@ public class InventoryManager extends Module {
             ItemStack bestBow;
             float bestScore;
             float currentScore;
-            if ("Crossbow".equals(this.bowPrioritySetting.getValue())) {
+            if ("弩".equals(this.bowPrioritySetting.getValue())) {
                 bestBow = ItemUtil.getBestCrossbow();
                 bestScore = ItemUtil.getCrossbowScore(bestBow);
                 currentScore = ItemUtil.getCrossbowScore(current);

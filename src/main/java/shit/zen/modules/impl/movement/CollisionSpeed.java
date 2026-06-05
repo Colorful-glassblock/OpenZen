@@ -20,7 +20,7 @@ import shit.zen.event.EventTarget;
 public class CollisionSpeed
 extends Module {
     public CollisionSpeed() {
-        super("CollisionSpeed", Category.MOVEMENT);
+        super("碰撞加速", Category.MOVEMENT);
     }
 
     @EventTarget

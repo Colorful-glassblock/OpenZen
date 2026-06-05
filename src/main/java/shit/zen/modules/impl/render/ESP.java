@@ -48,27 +48,27 @@ public class ESP extends Module {
             }
         }
 
-    private final ModeSetting modeSetting = new ModeSetting("Mode", "Glow", "Outlined 2D").withDefault("Outlined 2D");
-    private final BooleanSetting skeletonSetting = new BooleanSetting("Skeleton", false);
-    private final BooleanSetting playersSetting = new BooleanSetting("Players", true);
-    private final BooleanSetting mobsSetting = new BooleanSetting("Mobs", false);
-    private final BooleanSetting animalsSetting = new BooleanSetting("Animals", false);
-    private final BooleanSetting itemsSetting = new BooleanSetting("Items", false);
-    private final BooleanSetting arrowsSetting = new BooleanSetting("Arrows", true);
+    private final ModeSetting modeSetting = new ModeSetting("模式", "发光", "2D描边").withDefault("2D描边");
+    private final BooleanSetting skeletonSetting = new BooleanSetting("骨架", false);
+    private final BooleanSetting playersSetting = new BooleanSetting("玩家", true);
+    private final BooleanSetting mobsSetting = new BooleanSetting("怪物", false);
+    private final BooleanSetting animalsSetting = new BooleanSetting("动物", false);
+    private final BooleanSetting itemsSetting = new BooleanSetting("物品", false);
+    private final BooleanSetting arrowsSetting = new BooleanSetting("箭矢", true);
     private final Map<Entity, Pair<Vector4d, Boolean>> entityBoxPositions = new HashMap<>();
     private final Map<Entity, float[][]> playerBoneRotations = new HashMap<>();
-    private final BooleanSetting showHealthBarSetting = new BooleanSetting("Show Health Bar", true);
-    private final ModeSetting healthBarPositionSetting = new ModeSetting("Health Bar Position", "Bottom", "Top", "Left", "Right").withDefault("Bottom");
+    private final BooleanSetting showHealthBarSetting = new BooleanSetting("显示血条", true);
+    private final ModeSetting healthBarPositionSetting = new ModeSetting("血条位置", "底部", "顶部", "左侧", "右侧").withDefault("底部");
     private final List<Entity> visibleEntities = new ArrayList<>();
     private final List<Vector2f> projectedPoints = new ArrayList<>();
 
     public ESP() {
-        super("ESP", Category.RENDER);
+        super("透视", Category.RENDER);
         INSTANCE = this;
     }
 
     public boolean isGlowing(Entity entity) {
-        if (this.isEnabled() && "Glow".equalsIgnoreCase(this.modeSetting.getValue())) {
+        if (this.isEnabled() && "发光".equalsIgnoreCase(this.modeSetting.getValue())) {
             if (entity instanceof Player && this.playersSetting.getValue()) return true;
             if (entity instanceof Animal && this.animalsSetting.getValue()) return true;
             if (entity instanceof Mob && this.mobsSetting.getValue()) return true;
@@ -107,7 +107,7 @@ public class ESP extends Module {
     @EventTarget
     public void onRender(RenderEvent renderEvent) {
         if (mc.level == null || mc.player == null) return;
-        if (!"Outlined 2D".equals(this.modeSetting.getValue())) {
+        if (!"2D描边".equals(this.modeSetting.getValue())) {
             this.entityBoxPositions.clear();
             return;
         }
@@ -154,7 +154,7 @@ public class ESP extends Module {
 
     @EventTarget
     public void onRender2D(Render2DEvent event) {
-        if (!"Outlined 2D".equals(this.modeSetting.getValue()) || this.entityBoxPositions.isEmpty()) return;
+        if (!"2D描边".equals(this.modeSetting.getValue()) || this.entityBoxPositions.isEmpty()) return;
         Matrix4f matrix4f = event.guiGraphics().pose().last().pose();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -204,18 +204,18 @@ public class ESP extends Module {
         float right = x + (float) v.z();
         float bottom = y + (float) v.w();
         String position = this.healthBarPositionSetting.getValue();
-        if (position == null) position = "Bottom";
+        if (position == null) position = "底部";
         float barX, barY, barW, barH;
         switch (position) {
-            case "Top" -> { barW = (float) v.z(); barH = 2.0f; barX = x; barY = y - 4.0f; }
-            case "Left" -> { barW = 2.0f; barH = (float) v.w(); barX = x - 4.0f; barY = y; }
-            case "Right" -> { barW = 2.0f; barH = (float) v.w(); barX = right + 2.0f; barY = y; }
+            case "顶部" -> { barW = (float) v.z(); barH = 2.0f; barX = x; barY = y - 4.0f; }
+            case "左侧" -> { barW = 2.0f; barH = (float) v.w(); barX = x - 4.0f; barY = y; }
+            case "右侧" -> { barW = 2.0f; barH = (float) v.w(); barX = right + 2.0f; barY = y; }
             default -> { barW = (float) v.z(); barH = 2.0f; barX = x; barY = bottom + 2.0f; }
         }
         RenderUtil.drawQuad(builder, matrix4f, barX - 0.6f, barY - 0.6f, barX + barW + 0.6f, barY + barH + 0.6f, Color.BLACK);
         RenderUtil.drawQuad(builder, matrix4f, barX, barY, barX + barW, barY + barH, color.darker().darker());
         Color healthColor = this.getHealthColor(healthFrac);
-        if (position.equals("Left") || position.equals("Right")) {
+        if (position.equals("左侧") || position.equals("右侧")) {
             RenderUtil.drawQuad(builder, matrix4f, barX, barY + barH * (1.0f - healthFrac), barX + barW, barY + barH, healthColor);
         } else {
             RenderUtil.drawQuad(builder, matrix4f, barX, barY, barX + barW * healthFrac, barY + barH, healthColor);

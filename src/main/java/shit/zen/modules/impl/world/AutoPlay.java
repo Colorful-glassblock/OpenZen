@@ -13,13 +13,13 @@ import shit.zen.event.EventTarget;
 public class AutoPlay
 extends Module {
     public static AutoPlay instance;
-    private final NumberSetting delay = new NumberSetting("Delay", 2.0, 0.0, 10.0, 0.1);
+    private final NumberSetting delay = new NumberSetting("延迟", 2.0, 0.0, 10.0, 0.1);
     public long disconnectTime = -1L;
     public boolean pendingDisconnect = false;
     public long reconnectTime = -1L;
 
     public AutoPlay() {
-        super("AutoPlay", Category.WORLD);
+        super("自动游戏", Category.WORLD);
         instance = this;
     }
 

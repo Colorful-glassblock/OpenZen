@@ -113,7 +113,7 @@ extends Module {
     }
 
     static {
-        MODULE_NAME = "ChestESP";
+        MODULE_NAME = "箱子透视";
         chestColor = new float[]{0.0f, 1.0f, 0.0f};
         openedChestColor = new float[]{1.0f, 0.0f, 0.0f};
     }

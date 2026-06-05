@@ -12,14 +12,14 @@ import shit.zen.settings.impl.NumberSetting;
 
 public class OldHitting
 extends Module {
-    private final ModeSetting animationModeSetting = new ModeSetting("Animation", "Vanilla", "Leaked", "Slide").withDefault("Leaked");
-    private final NumberSetting sizeSetting = new NumberSetting("Size", 1.0, 0.1, 3.0, 0.1);
-    private final NumberSetting speedSetting = new NumberSetting("Speed", 1.0, 0.1, 5.0, 0.1);
-    private final NumberSetting yOffsetSetting = new NumberSetting("Y-Offset", 0.0, -1.0, 1.0, 0.1);
+    private final ModeSetting animationModeSetting = new ModeSetting("动画", "原版", "泄露版", "滑动").withDefault("泄露版");
+    private final NumberSetting sizeSetting = new NumberSetting("大小", 1.0, 0.1, 3.0, 0.1);
+    private final NumberSetting speedSetting = new NumberSetting("速度", 1.0, 0.1, 5.0, 0.1);
+    private final NumberSetting yOffsetSetting = new NumberSetting("Y偏移", 0.0, -1.0, 1.0, 0.1);
     public static OldHitting INSTANCE;
 
     public OldHitting() {
-        super("OldHitting", Category.RENDER);
+        super("旧版攻击动画", Category.RENDER);
         INSTANCE = this;
     }
 

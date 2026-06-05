@@ -44,7 +44,7 @@ extends HelperBase {
     private BlockLava.PlacementData currentState = null;
     private int blockSlot = -1;
     private int savedSlot = -1;
-    private static final String NAME = "Block Lava";
+    private static final String NAME = "阻挡岩浆";
 
     public BlockLava() {
         super(NAME);

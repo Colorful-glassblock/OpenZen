@@ -15,7 +15,7 @@ import shit.zen.event.EventTarget;
 public class AntiFireball
 extends Module {
     public AntiFireball() {
-        super("AntiFireball", Category.COMBAT);
+        super("反火球", Category.COMBAT);
     }
 
     @EventTarget
@@ -32,7 +32,7 @@ extends Module {
             return;
         }
         Fireball fireball = optional.get();
-        ChatUtil.print("§c[AntiFireball] Attacking fireball...");
+        ChatUtil.print("§c[反火球] 攻击火球...");
         mc.gameMode.attack(mc.player, fireball);
         mc.player.swing(InteractionHand.MAIN_HAND);
     }

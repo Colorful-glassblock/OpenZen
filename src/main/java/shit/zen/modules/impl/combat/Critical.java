@@ -11,7 +11,7 @@ public class Critical
 extends Module {
     public static Critical INSTANCE;
     public Critical() {
-        super("Critical", Category.COMBAT);
+        super("暴击", Category.COMBAT);
         INSTANCE = this;
     }
 

@@ -25,7 +25,7 @@ import shit.zen.event.EventTarget;
 public class AntiVoid
 extends Module {
     public static AntiVoid INSTANCE;
-    private final NumberSetting fallDistanceSetting = new NumberSetting("Fall Distance", 5.0, 1.0, 10.0, 0.5);
+    private final NumberSetting fallDistanceSetting = new NumberSetting("坠落距离", 5.0, 1.0, 10.0, 0.5);
     private final LinkedBlockingDeque<Packet<ServerGamePacketListener>> bufferedPackets = new LinkedBlockingDeque();
     private boolean scaffoldWasActive = false;
     public boolean bufferingPackets = false;
@@ -37,7 +37,7 @@ extends Module {
     private boolean awaitingScaffoldDisable;
 
     public AntiVoid() {
-        super("AntiVoid", Category.PLAYER);
+        super("防虚空", Category.PLAYER);
         INSTANCE = this;
     }
 

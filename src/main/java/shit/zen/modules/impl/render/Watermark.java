@@ -10,12 +10,12 @@ import shit.zen.settings.impl.ModeSetting;
 import shit.zen.event.EventTarget;
 
 public class Watermark extends Module {
-    final ModeSetting styleSetting = new ModeSetting("Style", "Neverlose", "DynamicIsland").withDefault("DynamicIsland");
+    final ModeSetting styleSetting = new ModeSetting("风格", "Neverlose", "DynamicIsland").withDefault("DynamicIsland");
     private final DynamicIsland dynamicIsland = new DynamicIsland();
     private final NeverloseWatermark neverloseWatermark = new NeverloseWatermark();
 
     public Watermark() {
-        super("Watermark", Category.RENDER);
+        super("水印", Category.RENDER);
     }
 
     @EventTarget

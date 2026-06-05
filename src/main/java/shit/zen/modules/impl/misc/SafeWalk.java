@@ -9,7 +9,7 @@ import shit.zen.event.EventTarget;
 public class SafeWalk
 extends Module {
     public SafeWalk() {
-        super("SafeWalk", Category.MISC);
+        super("安全行走", Category.MISC);
     }
 
     public static boolean isOnBlockEdge(float inset) {

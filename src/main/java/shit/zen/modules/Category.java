@@ -1,13 +1,13 @@
 package shit.zen.modules;
 
 public enum Category {
-    COMBAT("Combat"),
-    MOVEMENT("Movement"),
-    PLAYER("Player"),
-    RENDER("Render"),
-    EXPLOIT("World"),
-    WORLD("Misc"),
-    MISC("Ghost");
+    COMBAT("战斗"),
+    MOVEMENT("移动"),
+    PLAYER("玩家"),
+    RENDER("渲染"),
+    EXPLOIT("漏洞"),
+    WORLD("世界"),
+    MISC("辅助");
 
     public String displayName;
 

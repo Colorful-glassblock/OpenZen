@@ -107,18 +107,18 @@ public class Projectiles extends Module {
     private final ClassEspColor enderPearlColor = new ClassEspColor(Collections.singleton(ThrownEnderpearl.class), new Color(173, 12, 255));
     private final ClassEspColor eggColor = new ClassEspColor(Collections.singleton(ThrownEgg.class), new Color(255, 238, 154));
     private final ClassEspColor snowballColor = new ClassEspColor(Collections.singleton(Snowball.class), new Color(255, 255, 255));
-    public BooleanSetting showArrows = new BooleanSetting("Show Arrows", true);
-    public BooleanSetting showPearls = new BooleanSetting("Show Pearls", true);
-    public BooleanSetting showPotions = new BooleanSetting("Show Potions", false);
-    public BooleanSetting showEggs = new BooleanSetting("Show Eggs", false);
-    public BooleanSetting showSnowballs = new BooleanSetting("Show Snowballs", false);
-    private final NumberSetting lineWidth = new NumberSetting("Scale", 0.4, 0.2, 2.0, 0.01);
+    public BooleanSetting showArrows = new BooleanSetting("显示箭矢", true);
+    public BooleanSetting showPearls = new BooleanSetting("显示末影珍珠", true);
+    public BooleanSetting showPotions = new BooleanSetting("显示药水", false);
+    public BooleanSetting showEggs = new BooleanSetting("显示鸡蛋", false);
+    public BooleanSetting showSnowballs = new BooleanSetting("显示雪球", false);
+    private final NumberSetting lineWidth = new NumberSetting("缩放", 0.4, 0.2, 2.0, 0.01);
     private final FontRenderer fontRenderer = Fonts.getRenderer("pingfang_sc_regular.ttf", 32.0f);
     private final int backgroundColorRgb = new Color(0, 0, 0, 80).getRGB();
     public static final ConcurrentHashMap<Integer, ProjectileEntry> projectileMap = new ConcurrentHashMap<>();
 
     public Projectiles() {
-        super("Projectiles", Category.RENDER);
+        super("弹射物预测", Category.RENDER);
         INSTANCE = this;
     }
 

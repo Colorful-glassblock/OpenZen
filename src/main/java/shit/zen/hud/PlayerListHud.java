@@ -191,7 +191,7 @@ extends HudElement {
                         int dmg = handItem.getDamageValue();
                         Integer prev = entry.cheatItems.get(handItem.getItem());
                         if (prev != null && dmg > prev && !entry.flaggedItems.contains(handItem.getItem())) {
-                            ChatUtil.print(String.format("§c[ALERT] §f%s used a God Axe!", p.getName().getString()));
+                            ChatUtil.print(String.format("§c[警报] §f%s 使用了神装斧！", p.getName().getString()));
                             entry.flaggedItems.add(handItem.getItem());
                         }
                         entry.cheatItems.put(handItem.getItem(), dmg);

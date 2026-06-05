@@ -27,7 +27,7 @@ public class Fly extends Module {
     private final LinkedHashSet<HeldPacket> pendingPackets = new LinkedHashSet<>();
 
     public Fly() {
-        super("Fly", Category.MOVEMENT);
+        super("飞行", Category.MOVEMENT);
         INSTANCE = this;
     }
 

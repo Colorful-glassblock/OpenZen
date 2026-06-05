@@ -28,15 +28,15 @@ public class AutoOffHand extends Module {
 
     public enum ItemType { SNOWBALL, GAPPLE, NONE }
 
-    public final NumberSetting range = new NumberSetting("Range", 6.0, 1.0, 12.0, 0.5);
-    public final BooleanSetting gapple = new BooleanSetting("Gapple", true);
-    public final BooleanSetting snowball = new BooleanSetting("SnowBall", true);
-    public final NumberSetting health = new NumberSetting("Health", 10.0, 1.0, 20.0, 0.5);
-    public final BooleanSetting revertOnRegen = new BooleanSetting("RevertOnRegen", true);
+    public final NumberSetting range = new NumberSetting("范围", 6.0, 1.0, 12.0, 0.5);
+    public final BooleanSetting gapple = new BooleanSetting("金苹果", true);
+    public final BooleanSetting snowball = new BooleanSetting("雪球", true);
+    public final NumberSetting health = new NumberSetting("生命值", 10.0, 1.0, 20.0, 0.5);
+    public final BooleanSetting revertOnRegen = new BooleanSetting("再生时恢复", true);
     private int equipCooldown = 0;
 
     public AutoOffHand() {
-        super("AutoOffHand", Category.COMBAT);
+        super("自动副手", Category.COMBAT);
         INSTANCE = this;
     }
 

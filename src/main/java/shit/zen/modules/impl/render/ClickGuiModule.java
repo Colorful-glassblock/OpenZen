@@ -12,18 +12,18 @@ import shit.zen.settings.impl.ModeSetting;
 public class ClickGuiModule
 extends Module {
     public static final Logger LOGGER = LogManager.getLogger(ClickGuiModule.class);
-    public final ModeSetting styleSetting = new ModeSetting("Mode", "Old", "Panel", "New").withDefault("Old");
+    public final ModeSetting styleSetting = new ModeSetting("模式", "旧版", "面板", "新版").withDefault("旧版");
 
     public ClickGuiModule() {
-        super("ClickGui", Category.RENDER, 344);
+        super("点击界面", Category.RENDER, 344);
     }
 
     @Override
     protected void onEnable() {
         try {
-            if (this.styleSetting.is("Old")) {
+            if (this.styleSetting.is("旧版")) {
                 mc.setScreen(new OldClickGui());
-            } else if (this.styleSetting.is("Panel")) {
+            } else if (this.styleSetting.is("面板")) {
                 mc.setScreen(PanelClickGui.panelClickGui);
             } else {
                 mc.setScreen(new NewClickGui());

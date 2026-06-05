@@ -60,7 +60,7 @@ public class OpalNameTag extends NameTagStyle {
     private final Map<String, Long> nameDecodeTimestamps;
 
     public OpalNameTag() {
-        super("Opal");
+        super("蛋白石");
         this.scaleSetting = NameTags.INSTANCE.scaleSetting;
         this.distanceSetting = NameTags.INSTANCE.distanceSetting;
         this.showHealthSetting = NameTags.INSTANCE.showHealthSetting;
@@ -77,7 +77,7 @@ public class OpalNameTag extends NameTagStyle {
 
     @Override
     public String getName() {
-        return "Opal";
+        return "蛋白石";
     }
 
     @Override

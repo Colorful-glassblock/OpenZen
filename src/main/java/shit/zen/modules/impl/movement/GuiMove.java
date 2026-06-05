@@ -16,7 +16,7 @@ public class GuiMove
 extends Module {
     public static GuiMove INSTANCE;
     public GuiMove() {
-        super("GuiMove", Category.MOVEMENT);
+        super("GUI移动", Category.MOVEMENT);
         INSTANCE = this;
     }
 

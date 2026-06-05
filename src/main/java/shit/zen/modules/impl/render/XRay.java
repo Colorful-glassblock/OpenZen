@@ -68,33 +68,33 @@ import shit.zen.utils.misc.ChatUtil;
 public class XRay extends Module {
     public static XRay INSTANCE;
 
-    private final ModeSetting xrayModeSetting = new ModeSetting("Block Type", "Ores", "Valuables").withDefault("Ores");
-    private final NumberSetting scanRangeSetting = new NumberSetting("Range", 48, 16, 100, 4);
-    private final NumberSetting scanIntervalSetting = new NumberSetting("Scan Delay", 500, 50, 3000, 100);
-    private final BooleanSetting tracersSetting = new BooleanSetting("Tracers", true);
-    private final NumberSetting maxBlocksSetting = new NumberSetting("MaxBlocks", 80000, 10000, 500000, 10000);
-    private final BooleanSetting antiFakeOreSetting = new BooleanSetting("Anti-Fake Ore", true);
-    private final NumberSetting minAuthScoreSetting = new NumberSetting("Min Auth Score", 1.0, 1.0, 15.0, 0.5, this.antiFakeOreSetting::getValue);
-    private final BooleanSetting patternAnalysisSetting = new BooleanSetting("Pattern Analysis", false, this.antiFakeOreSetting::getValue);
-    private final BooleanSetting strictHostRockSetting = new BooleanSetting("Strict Host Rock Check", true, this.antiFakeOreSetting::getValue);
-    private final BooleanSetting altStartSetting = new BooleanSetting("Enable Alternative Start", true);
-    private final NumberSetting minAirBlocksSetting = new NumberSetting("Min Air Blocks Required", 50, 10, 1000, 50);
-    private final NumberSetting altSearchRadiusSetting = new NumberSetting("Alternative Search Radius", 5, 1, 10, 1);
-    private final BooleanSetting blindScanSetting = new BooleanSetting("Blind Scan", true);
-    private final NumberSetting blindRenderRangeSetting = new NumberSetting("Blind Render Range", 32, 8, 1024, 4, this.blindScanSetting::getValue);
-    private final NumberSetting minVeinSizeSetting = new NumberSetting("Minimum Vein Size", 1, 1, 10, 1, this.antiFakeOreSetting::getValue);
-    private final BooleanSetting diamondSetting = new BooleanSetting("Diamond", true);
-    private final BooleanSetting emeraldSetting = new BooleanSetting("Emerald", true);
-    private final BooleanSetting redstoneSetting = new BooleanSetting("Redstone", true);
-    private final BooleanSetting ironSetting = new BooleanSetting("Iron", true);
-    private final BooleanSetting goldSetting = new BooleanSetting("Gold", true);
-    private final BooleanSetting copperSetting = new BooleanSetting("Copper", true);
-    private final BooleanSetting lapisSetting = new BooleanSetting("Lapis", true);
-    private final BooleanSetting coalSetting = new BooleanSetting("Coal", true);
-    private final BooleanSetting quartzSetting = new BooleanSetting("Quartz", true);
-    private final BooleanSetting ancientDebrisSetting = new BooleanSetting("Ancient Debris", true);
-    private final BooleanSetting spawnerSetting = new BooleanSetting("Spawner", true);
-    private final BooleanSetting endPortalSetting = new BooleanSetting("EndPortalFrame", true);
+    private final ModeSetting xrayModeSetting = new ModeSetting("方块类型", "矿石", "贵重物品").withDefault("矿石");
+    private final NumberSetting scanRangeSetting = new NumberSetting("范围", 48, 16, 100, 4);
+    private final NumberSetting scanIntervalSetting = new NumberSetting("扫描延迟", 500, 50, 3000, 100);
+    private final BooleanSetting tracersSetting = new BooleanSetting("追踪线", true);
+    private final NumberSetting maxBlocksSetting = new NumberSetting("最大方块数", 80000, 10000, 500000, 10000);
+    private final BooleanSetting antiFakeOreSetting = new BooleanSetting("反假矿", true);
+    private final NumberSetting minAuthScoreSetting = new NumberSetting("最低认证分数", 1.0, 1.0, 15.0, 0.5, this.antiFakeOreSetting::getValue);
+    private final BooleanSetting patternAnalysisSetting = new BooleanSetting("模式分析", false, this.antiFakeOreSetting::getValue);
+    private final BooleanSetting strictHostRockSetting = new BooleanSetting("严格围岩检查", true, this.antiFakeOreSetting::getValue);
+    private final BooleanSetting altStartSetting = new BooleanSetting("启用替代起点", true);
+    private final NumberSetting minAirBlocksSetting = new NumberSetting("最少空气方块", 50, 10, 1000, 50);
+    private final NumberSetting altSearchRadiusSetting = new NumberSetting("替代搜索半径", 5, 1, 10, 1);
+    private final BooleanSetting blindScanSetting = new BooleanSetting("盲扫", true);
+    private final NumberSetting blindRenderRangeSetting = new NumberSetting("盲扫渲染范围", 32, 8, 1024, 4, this.blindScanSetting::getValue);
+    private final NumberSetting minVeinSizeSetting = new NumberSetting("最小矿脉大小", 1, 1, 10, 1, this.antiFakeOreSetting::getValue);
+    private final BooleanSetting diamondSetting = new BooleanSetting("钻石", true);
+    private final BooleanSetting emeraldSetting = new BooleanSetting("绿宝石", true);
+    private final BooleanSetting redstoneSetting = new BooleanSetting("红石", true);
+    private final BooleanSetting ironSetting = new BooleanSetting("铁", true);
+    private final BooleanSetting goldSetting = new BooleanSetting("金", true);
+    private final BooleanSetting copperSetting = new BooleanSetting("铜", true);
+    private final BooleanSetting lapisSetting = new BooleanSetting("青金石", true);
+    private final BooleanSetting coalSetting = new BooleanSetting("煤炭", true);
+    private final BooleanSetting quartzSetting = new BooleanSetting("石英", true);
+    private final BooleanSetting ancientDebrisSetting = new BooleanSetting("远古残骸", true);
+    private final BooleanSetting spawnerSetting = new BooleanSetting("刷怪笼", true);
+    private final BooleanSetting endPortalSetting = new BooleanSetting("末地传送门框架", true);
     private final Color diamondColor = new Color(0, 255, 255);
     private final Color emeraldColor = new Color(0, 255, 0);
     private final Color redstoneColor = new Color(255, 0, 0);
@@ -139,7 +139,7 @@ public class XRay extends Module {
     );
 
     public XRay() {
-        super("XRay", Category.RENDER);
+        super("透视挖矿", Category.RENDER);
         INSTANCE = this;
     }
 
@@ -236,7 +236,7 @@ public class XRay extends Module {
         if (mc.levelRenderer != null) {
             mc.levelRenderer.allChanged();
         }
-        ChatUtil.print(ChatFormatting.GREEN + "Reset");
+        ChatUtil.print(ChatFormatting.GREEN + "已重置");
     }
 
     @EventTarget
@@ -388,7 +388,7 @@ public class XRay extends Module {
             return false;
         }
         String mode = this.xrayModeSetting.getValue();
-        if (mode.equalsIgnoreCase("Ores")) {
+        if (mode.equalsIgnoreCase("矿石")) {
             return this.diamondSetting.getValue() && (block == Blocks.DIAMOND_ORE || block == Blocks.DEEPSLATE_DIAMOND_ORE)
                     || this.emeraldSetting.getValue() && (block == Blocks.EMERALD_ORE || block == Blocks.DEEPSLATE_EMERALD_ORE)
                     || this.redstoneSetting.getValue() && (block == Blocks.REDSTONE_ORE || block == Blocks.DEEPSLATE_REDSTONE_ORE)
@@ -397,7 +397,7 @@ public class XRay extends Module {
                     || this.copperSetting.getValue() && (block == Blocks.COPPER_ORE || block == Blocks.DEEPSLATE_COPPER_ORE)
                     || this.lapisSetting.getValue() && (block == Blocks.LAPIS_ORE || block == Blocks.DEEPSLATE_LAPIS_ORE)
                     || this.coalSetting.getValue() && (block == Blocks.COAL_ORE || block == Blocks.DEEPSLATE_COAL_ORE);
-        } else if (mode.equalsIgnoreCase("Valuables")) {
+        } else if (mode.equalsIgnoreCase("贵重物品")) {
             return block == Blocks.ANCIENT_DEBRIS
                     || block == Blocks.NETHER_GOLD_ORE
                     || block == Blocks.NETHER_QUARTZ_ORE

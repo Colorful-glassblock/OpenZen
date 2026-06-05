@@ -43,12 +43,12 @@ public class JumpResetMode extends AntiKBMode {
     private Rotation targetRotation = null;
 
     public JumpResetMode() {
-        super("Jump Reset");
+        super("跳跃重置");
     }
 
     @Override
     public String getName() {
-        return "Jump Reset";
+        return "跳跃重置";
     }
 
     @Override
@@ -136,7 +136,7 @@ public class JumpResetMode extends AntiKBMode {
             this.resetState();
             return;
         }
-        if ((AntiKB.mode.is("Jump Reset") || AntiKB.mode.is("Mix"))
+        if ((AntiKB.mode.is("跳跃重置") || AntiKB.mode.is("混合"))
                 && AntiKB.INSTANCE.followDirection.getValue()
                 && AntiKB.rotation != null) {
             event.setForward(1.0f);
@@ -147,7 +147,7 @@ public class JumpResetMode extends AntiKBMode {
     @Override
     public void onReceivePacket(ReceivePacketEvent event) {
         LocalPlayer player = mc.player;
-        if (player == null || !AntiKB.mode.is("Jump Reset")) return;
+        if (player == null || !AntiKB.mode.is("跳跃重置")) return;
         if (this.isSuspended()) {
             if (this.isSuspending) this.flushQueue(false);
             AntiKB.rotation = null;
@@ -215,7 +215,7 @@ public class JumpResetMode extends AntiKBMode {
     public void onGameTick(GameTickEvent event) {
         LocalPlayer player = mc.player;
         if (player == null) return;
-        if (!AntiKB.mode.is("Jump Reset") && !AntiKB.mode.is("Mix")) return;
+        if (!AntiKB.mode.is("跳跃重置") && !AntiKB.mode.is("混合")) return;
         if (this.isSuspended()) {
             if (this.isSuspending) this.flushQueue(false);
             AntiKB.rotation = null;
@@ -245,7 +245,7 @@ public class JumpResetMode extends AntiKBMode {
     public void onTick(TickEvent event) {
         LocalPlayer player = mc.player;
         if (player == null) return;
-        if (!AntiKB.mode.is("Jump Reset") && !AntiKB.mode.is("Mix")) return;
+        if (!AntiKB.mode.is("跳跃重置") && !AntiKB.mode.is("混合")) return;
         if (this.isSuspended()) {
             if (this.isSuspending) this.flushQueue(false);
             AntiKB.rotation = null;

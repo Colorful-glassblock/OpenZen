@@ -23,14 +23,14 @@ import shit.zen.event.EventTarget;
 
 public class AutoTools
 extends Module {
-    private final BooleanSetting checkSword = new BooleanSetting("Check Sword", true);
-    private final BooleanSetting switchBack = new BooleanSetting("Switch Back", true);
-    private final BooleanSetting silent = new BooleanSetting("Silent", true);
+    private final BooleanSetting checkSword = new BooleanSetting("检查剑", true);
+    private final BooleanSetting switchBack = new BooleanSetting("切换回来", true);
+    private final BooleanSetting silent = new BooleanSetting("静默", true);
     public static String[] toolNames;
     private int previousSlot = -1;
 
     public AutoTools() {
-        super("AutoTools", Category.WORLD);
+        super("自动工具", Category.WORLD);
     }
 
     public static Object getInstance() {

@@ -32,16 +32,16 @@ import shit.zen.event.EventTarget;
 public class AutoThrow
 extends Module {
     public static AutoThrow INSTANCE;
-    private final NumberSetting minDistance = new NumberSetting("Min Distance", 5, 3, 30, 1);
-    private final NumberSetting maxDistance = new NumberSetting("Max Distance", 10, 3, 30, 1);
-    private final NumberSetting throwDelay = new NumberSetting("Delay", 500, 50, 2000, 50);
+    private final NumberSetting minDistance = new NumberSetting("最小距离", 5, 3, 30, 1);
+    private final NumberSetting maxDistance = new NumberSetting("最大距离", 10, 3, 30, 1);
+    private final NumberSetting throwDelay = new NumberSetting("延迟", 500, 50, 2000, 50);
     private final Timer throwTimer = new Timer();
     public Rotation targetRotation;
     public int ticksUntilThrow;
     private int savedSlot = -1;
 
     public AutoThrow() {
-        super("AutoThrow", Category.COMBAT);
+        super("自动投掷", Category.COMBAT);
         INSTANCE = this;
     }
 

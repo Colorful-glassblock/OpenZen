@@ -12,7 +12,7 @@ public class Sprint
 extends Module {
     private final HashMap<String, String> keyMappings = new HashMap<>();
     public Sprint() {
-        super("Sprint", Category.MOVEMENT);
+        super("疾跑", Category.MOVEMENT);
         this.setEnabled(true);
     }
 

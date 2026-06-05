@@ -16,18 +16,18 @@ import shit.zen.event.EventTarget;
 public class NameProtect
 extends Module {
     public static NameProtect INSTANCE;
-    private final ModeSetting modeSetting = new ModeSetting("Mode", "Fixed", "Random").withDefault("Fixed");
+    private final ModeSetting modeSetting = new ModeSetting("模式", "固定", "随机").withDefault("固定");
     private String cachedRandomName = null;
     private final Random random = new Random();
 
     public NameProtect() {
-        super("NameProtect", Category.RENDER);
+        super("名字保护", Category.RENDER);
         INSTANCE = this;
     }
 
     @EventTarget
     public void onDisconnect(DisconnectEvent disconnectEvent) {
-        if (this.modeSetting.is("Random")) {
+        if (this.modeSetting.is("随机")) {
             this.cachedRandomName = null;
         }
     }

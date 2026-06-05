@@ -52,7 +52,7 @@ extends HelperBase {
     private int aimCooldown = 0;
 
     public SelfExtinguish() {
-        super("Self Extinguish");
+        super("自我灭火");
     }
 
     @Override
@@ -170,7 +170,7 @@ extends HelperBase {
                 Helper.markWaterPlaced(this.waterBlockPos);
                 this.useItem(mc.player, mc.level, InteractionHand.MAIN_HAND);
             } else {
-                ChatUtil.print("Failed to place water!");
+                ChatUtil.print("放置水源失败！");
                 this.isAiming = false;
                 this.targetRotation = null;
             }
@@ -185,7 +185,7 @@ extends HelperBase {
                 }
                 Helper.removeWaterPlacement(this.waterBlockPos);
             } else {
-                ChatUtil.print("Failed to recycle water due to moving!");
+                ChatUtil.print("因移动导致回收水源失败！");
             }
             if (this.savedSlot != -1) {
                 mc.player.getInventory().selected = this.savedSlot;

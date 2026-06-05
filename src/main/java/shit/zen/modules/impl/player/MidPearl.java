@@ -31,11 +31,11 @@ public class MidPearl extends Module {
     public static MidPearl INSTANCE;
     public static Rotation targetRotation;
 
-    private final ModeSetting mainButtonSetting = new ModeSetting("Button", "Middle", "Mouse 4", "Mouse 5").withDefault("Middle");
-    private final BooleanSetting interceptSetting = new BooleanSetting("Intercept", false);
-    private final ModeSetting interceptButtonSetting = new ModeSetting("Intercept Button", "Mouse 4", "Mouse 5").withDefault("Mouse 4");
-    private final BooleanSetting holdModeSetting = new BooleanSetting("On Release", false);
-    private final BooleanSetting losCheckSetting = new BooleanSetting("Block Check", true);
+    private final ModeSetting mainButtonSetting = new ModeSetting("按钮", "中键", "鼠标4", "鼠标5").withDefault("中键");
+    private final BooleanSetting interceptSetting = new BooleanSetting("拦截", false);
+    private final ModeSetting interceptButtonSetting = new ModeSetting("拦截按钮", "鼠标4", "鼠标5").withDefault("鼠标4");
+    private final BooleanSetting holdModeSetting = new BooleanSetting("释放时", false);
+    private final BooleanSetting losCheckSetting = new BooleanSetting("方块检查", true);
     private final Timer throwTimer = new Timer();
     private boolean isHoldingIntercept = false;
     private boolean isHoldingButton = false;
@@ -49,7 +49,7 @@ public class MidPearl extends Module {
     private int postThrowTicks = 0;
 
     public MidPearl() {
-        super("MidPearl", Category.PLAYER);
+        super("中珍珠", Category.PLAYER);
         INSTANCE = this;
     }
 
@@ -92,8 +92,8 @@ public class MidPearl extends Module {
 
     private int getMouseButton(ModeSetting setting) {
         return switch (setting.getValue()) {
-            case "Mouse 4" -> 3;
-            case "Mouse 5" -> 4;
+            case "鼠标4" -> 3;
+            case "鼠标5" -> 4;
             default -> 2;
         };
     }

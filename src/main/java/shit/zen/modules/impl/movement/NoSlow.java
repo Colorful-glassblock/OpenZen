@@ -57,14 +57,14 @@ public class NoSlow extends Module {
         IDLE, WAITING, SWAPPING, USING
     }
 
-    public final ModeSetting mode             = new ModeSetting("Mode", "Grim V3", "NoSlow").withDefault("Grim V3");
-    public final BooleanSetting bowNoSlow      = new BooleanSetting("Bow", false, this::isGrimSlowMode);
-    public final BooleanSetting keepSprinting  = new BooleanSetting("Keep Sprinting", true);
-    public final BooleanSetting crossbowNoSlow = new BooleanSetting("Crossbow", false);
-    public final BooleanSetting foodNoSlow     = new BooleanSetting("Food", true);
-    public final BooleanSetting potionNoSlow   = new BooleanSetting("Potion", true);
-    public final BooleanSetting shieldNoSlow   = new BooleanSetting("Shield NoSlow", true);
-    public final NumberSetting useItemTicks    = new NumberSetting("Use Item Ticks", 1, 1, 20, 1,
+    public final ModeSetting mode             = new ModeSetting("模式", "Grim V3", "无减速").withDefault("Grim V3");
+    public final BooleanSetting bowNoSlow      = new BooleanSetting("弓", false, this::isGrimSlowMode);
+    public final BooleanSetting keepSprinting  = new BooleanSetting("保持疾跑", true);
+    public final BooleanSetting crossbowNoSlow = new BooleanSetting("弩", false);
+    public final BooleanSetting foodNoSlow     = new BooleanSetting("食物", true);
+    public final BooleanSetting potionNoSlow   = new BooleanSetting("药水", true);
+    public final BooleanSetting shieldNoSlow   = new BooleanSetting("盾牌无减速", true);
+    public final NumberSetting useItemTicks    = new NumberSetting("使用物品刻数", 1, 1, 20, 1,
             () -> this.isGrimSlowMode() && this.bowNoSlow.getValue());
 
     private final Timer timer = new Timer();
@@ -87,7 +87,7 @@ public class NoSlow extends Module {
     private int savedHotbarSlot = -1;
 
     public NoSlow() {
-        super("NoSlow", Category.MOVEMENT);
+        super("无减速", Category.MOVEMENT);
         INSTANCE = this;
     }
 
@@ -546,7 +546,7 @@ public class NoSlow extends Module {
     }
 
     private boolean isNoSlowMode() {
-        return this.mode.is("NoSlow");
+        return this.mode.is("无减速");
     }
 
     private Packet<?> createUseItemPacket(int sequence) {

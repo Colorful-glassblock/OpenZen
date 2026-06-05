@@ -43,7 +43,7 @@ extends AntiKBMode {
     private int movementState = 0;
 
     public MixMode() {
-        super("Mix");
+        super("混合");
     }
 
     @Override
@@ -138,7 +138,7 @@ extends AntiKBMode {
             this.knockbackPacket = null;
             this.flushPackets();
             this.isSuspending = false;
-            ChatUtil.print("Ignore: Player in web or liquid!");
+            ChatUtil.print("忽略：玩家在蛛网或液体中！");
         }
     }
 

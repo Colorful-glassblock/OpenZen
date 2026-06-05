@@ -21,21 +21,21 @@ import shit.zen.event.EventTarget;
 
 public class AimAssist
 extends Module {
-    private final NumberSetting randomYawOffset = new NumberSetting("Random Yaw Offset", 2, 0, 10, 0.01);
-    private final NumberSetting randomPitchOffset = new NumberSetting("Random Pitch Offset", 0.075f, 0, 1, 0.01);
-    private final NumberSetting range = new NumberSetting("Range", 5, 3, 30, 0.1);
-    private final NumberSetting fov = new NumberSetting("Fov", 120, 1, 360, 1);
-    private final BooleanSetting mouseDown = new BooleanSetting("Mouse down", true);
-    private final BooleanSetting adaptive = new BooleanSetting("Adaptive", true);
-    private final NumberSetting adaptiveOffset = new NumberSetting("Adaptive Offset", 3, 0.1f, 15.0f, 0.01);
-    private final NumberSetting smoothAmount = new NumberSetting("Smooth amount", 15, 1.0f, 90.0f, 0.1);
-    private final BooleanSetting breakBlock = new BooleanSetting("Break Block", true);
+    private final NumberSetting randomYawOffset = new NumberSetting("随机偏航偏移", 2, 0, 10, 0.01);
+    private final NumberSetting randomPitchOffset = new NumberSetting("随机俯仰偏移", 0.075f, 0, 1, 0.01);
+    private final NumberSetting range = new NumberSetting("范围", 5, 3, 30, 0.1);
+    private final NumberSetting fov = new NumberSetting("视野", 120, 1, 360, 1);
+    private final BooleanSetting mouseDown = new BooleanSetting("鼠标按下", true);
+    private final BooleanSetting adaptive = new BooleanSetting("自适应", true);
+    private final NumberSetting adaptiveOffset = new NumberSetting("自适应偏移", 3, 0.1f, 15.0f, 0.01);
+    private final NumberSetting smoothAmount = new NumberSetting("平滑量", 15, 1.0f, 90.0f, 0.1);
+    private final BooleanSetting breakBlock = new BooleanSetting("破坏方块", true);
     private Vec3 targetOffset;
     private Vec3 aimOffset;
     private boolean isPitchAdjusting = false;
 
     public AimAssist() {
-        super("AimAssist", Category.MISC);
+        super("辅助瞄准", Category.MISC);
     }
 
     @EventTarget

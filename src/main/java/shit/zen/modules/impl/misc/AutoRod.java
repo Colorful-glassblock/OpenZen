@@ -16,15 +16,15 @@ import shit.zen.event.EventTarget;
 public class AutoRod
 extends Module {
     public static AutoRod INSTANCE;
-    private final ModeSetting mouseButton = new ModeSetting("Button", "Middle", "Mouse 4", "Mouse 5").withDefault("Mouse 4");
-    private final NumberSetting delay = new NumberSetting("Delay", 2, 0, 20, 1);
+    private final ModeSetting mouseButton = new ModeSetting("按钮", "中键", "鼠标4", "鼠标5").withDefault("鼠标4");
+    private final NumberSetting delay = new NumberSetting("延迟", 2, 0, 20, 1);
     private boolean slotSwitched = false;
     private boolean isActive = false;
     private int previousSlot = -1;
     private int tickDelay = 0;
 
     public AutoRod() {
-        super("AutoRod", Category.MISC);
+        super("自动鱼竿", Category.MISC);
         INSTANCE = this;
     }
 
@@ -103,8 +103,8 @@ extends Module {
 
     private int getMouseButtonCode() {
         return switch ((String) this.mouseButton.getValue()) {
-            case "Mouse 5" -> 4;
-            case "Middle" -> 2;
+            case "鼠标5" -> 4;
+            case "中键" -> 2;
             default -> 3;
         };
     }

@@ -41,11 +41,11 @@ public class Helper extends Module {
     private static FluidTracker fluidTracker;
 
     private final MultiSelectSetting modulesSetting = new MultiSelectSetting(
-            "Mode", "Self Extinguish", "Extinguish Fire", "Block Lava", "Block Water")
-            .withDefaults("Self Extinguish", "Extinguish Fire", "Block Lava", "Block Water");
-    private final BooleanSetting smoothRotationSetting = new BooleanSetting("Legit", false);
+            "模式", "自我灭火", "扑灭火焰", "阻挡岩浆", "阻挡水流")
+            .withDefaults("自我灭火", "扑灭火焰", "阻挡岩浆", "阻挡水流");
+    private final BooleanSetting smoothRotationSetting = new BooleanSetting("合法", false);
     private final NumberSetting rotationSpeedSetting = new NumberSetting(
-            "Speed", 45, 2, 180, 1, this.smoothRotationSetting::getValue);
+            "速度", 45, 2, 180, 1, this.smoothRotationSetting::getValue);
     private final NumberSetting rotationFovSetting = new NumberSetting(
             "FOV", 90, 30, 180, 1, this.smoothRotationSetting::getValue);
 
@@ -53,7 +53,7 @@ public class Helper extends Module {
     private Rotation lastTargetRotation;
 
     public Helper() {
-        super("Helper", Category.PLAYER);
+        super("辅助", Category.PLAYER);
         INSTANCE = this;
         this.subModuleList.add(new SelfExtinguish());
         this.subModuleList.add(new ExtinguishFire());

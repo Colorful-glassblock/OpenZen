@@ -23,10 +23,10 @@ import shit.zen.event.EventTarget;
 public class AutoMLG
 extends Module {
     public static AutoMLG INSTANCE;
-    private final NumberSetting triggerDistanceSetting = new NumberSetting("Fall distance", 3.0f, 1.0f, 10.0f, 0.1f);
-    private final NumberSetting predictTicksSetting = new NumberSetting("Predict Ticks", 2.0f, 1.0f, 5.0f, 1.0f);
-    private final BooleanSetting solidCheckSetting = new BooleanSetting("Solid check", true);
-    private final BooleanSetting recoverySetting = new BooleanSetting("Recorvey", true);
+    private final NumberSetting triggerDistanceSetting = new NumberSetting("坠落距离", 3.0f, 1.0f, 10.0f, 0.1f);
+    private final NumberSetting predictTicksSetting = new NumberSetting("预测刻数", 2.0f, 1.0f, 5.0f, 1.0f);
+    private final BooleanSetting solidCheckSetting = new BooleanSetting("实体检查", true);
+    private final BooleanSetting recoverySetting = new BooleanSetting("恢复", true);
     public Rotation targetRotation = null;
     private float accumulatedFall;
     private double lastY;
@@ -43,7 +43,7 @@ extends Module {
     private int extraCooldown;
 
     public AutoMLG() {
-        super("AutoMLG", Category.PLAYER);
+        super("自动MLG", Category.PLAYER);
         INSTANCE = this;
     }
 

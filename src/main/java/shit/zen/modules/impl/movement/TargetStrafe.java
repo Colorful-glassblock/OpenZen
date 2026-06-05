@@ -18,15 +18,15 @@ public class TargetStrafe
 extends Module {
     public static TargetStrafe INSTANCE;
     private final Timer collisionTimer = new Timer();
-    private final BooleanSetting smartStrafe = new BooleanSetting("Jump Key Only", true);
-    private final NumberSetting range = new NumberSetting("Range", 0.5f, 0.1f, 2.0f, 0.1f);
-    private final NumberSetting switchDelay = new NumberSetting("Switch Delay", 1000, 100, 5000, 100);
+    private final BooleanSetting smartStrafe = new BooleanSetting("仅跳跃键", true);
+    private final NumberSetting range = new NumberSetting("范围", 0.5f, 0.1f, 2.0f, 0.1f);
+    private final NumberSetting switchDelay = new NumberSetting("切换延迟", 1000, 100, 5000, 100);
     public static int strafeDirectionSign;
     public static Entity strafeTarget;
     private final Timer switchTimer = new Timer();
 
     public TargetStrafe() {
-        super("TargetStrafe", Category.MOVEMENT);
+        super("目标环绕", Category.MOVEMENT);
         INSTANCE = this;
     }
 

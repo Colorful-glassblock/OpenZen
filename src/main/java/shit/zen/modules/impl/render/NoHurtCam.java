@@ -7,7 +7,7 @@ public class NoHurtCam
 extends Module {
     public static NoHurtCam INSTANCE;
     public NoHurtCam() {
-        super("NoHurtCam", Category.RENDER);
+        super("无受伤镜头", Category.RENDER);
         INSTANCE = this;
     }
 }

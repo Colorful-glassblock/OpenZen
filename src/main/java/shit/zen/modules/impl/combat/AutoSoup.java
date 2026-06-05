@@ -15,17 +15,17 @@ import shit.zen.event.EventTarget;
 public class AutoSoup
 extends Module {
     public static AutoSoup INSTANCE;
-    private final NumberSetting health = new NumberSetting("Health", 15, 0, 20, 1);
-    private final NumberSetting delay = new NumberSetting("Delay", 300, 0, 1000, 1);
-    private final NumberSetting switchDelay = new NumberSetting("Switch Delay", 100, 0, 1000, 1);
-    private final BooleanSetting drop = new BooleanSetting("Drop", true);
+    private final NumberSetting health = new NumberSetting("生命值", 15, 0, 20, 1);
+    private final NumberSetting delay = new NumberSetting("延迟", 300, 0, 1000, 1);
+    private final NumberSetting switchDelay = new NumberSetting("切换延迟", 100, 0, 1000, 1);
+    private final BooleanSetting drop = new BooleanSetting("丢弃", true);
     private final Timer switchDelayTimer = new Timer();
     private final Timer delayTimer = new Timer();
     private int prevSelectedSlot = -1;
     public boolean isUsingSoup;
 
     public AutoSoup() {
-        super("AutoSoup", Category.COMBAT);
+        super("自动汤", Category.COMBAT);
         INSTANCE = this;
     }
 

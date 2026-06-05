@@ -36,13 +36,13 @@ public class DamageGlow extends Module {
     public static DamageGlow INSTANCE;
 
     private final Map<Integer, List<EntitySnapshot>> glowingEntities = new ConcurrentHashMap<>();
-    private final NumberSetting colorRSetting = new NumberSetting("Color R", 0, 0, 255, 1);
-    private final NumberSetting colorGSetting = new NumberSetting("Color G", 0, 0, 255, 1);
-    private final NumberSetting colorBSetting = new NumberSetting("Color B", 0, 0, 255, 1);
-    private final NumberSetting alphaSetting = new NumberSetting("Alpha", 45.0, 0.0, 255.0, 1.0);
+    private final NumberSetting colorRSetting = new NumberSetting("颜色 红", 0, 0, 255, 1);
+    private final NumberSetting colorGSetting = new NumberSetting("颜色 绿", 0, 0, 255, 1);
+    private final NumberSetting colorBSetting = new NumberSetting("颜色 蓝", 0, 0, 255, 1);
+    private final NumberSetting alphaSetting = new NumberSetting("透明度", 45.0, 0.0, 255.0, 1.0);
 
     public DamageGlow() {
-        super("DamageGlow", Category.RENDER);
+        super("伤害发光", Category.RENDER);
         INSTANCE = this;
     }
 

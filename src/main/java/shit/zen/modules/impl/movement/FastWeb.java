@@ -14,7 +14,7 @@ extends Module {
     private int lastWebTick = 0;
     private int webCount = 0;
     public FastWeb() {
-        super("FastWeb", Category.MOVEMENT);
+        super("快速蛛网", Category.MOVEMENT);
     }
 
     @EventTarget

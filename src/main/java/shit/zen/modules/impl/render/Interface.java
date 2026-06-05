@@ -6,6 +6,6 @@ import shit.zen.modules.Module;
 public class Interface
 extends Module {
     public Interface() {
-        super("Interface", Category.RENDER);
+        super("界面", Category.RENDER);
     }
 }

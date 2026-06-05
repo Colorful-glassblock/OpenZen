@@ -26,7 +26,7 @@ import shit.zen.event.EventTarget;
 public class GhostHand
 extends Module {
     public GhostHand() {
-        super("GhostHand", Category.PLAYER);
+        super("幽灵手", Category.PLAYER);
     }
 
     @EventTarget

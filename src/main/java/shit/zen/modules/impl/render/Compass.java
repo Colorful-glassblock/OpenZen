@@ -22,8 +22,8 @@ import shit.zen.event.EventTarget;
 
 public class Compass
 extends Module {
-    private final BooleanSetting compassOnly = new BooleanSetting("Compass Only", true);
-    private final BooleanSetting noPlayerOnly = new BooleanSetting("No Player Only", true);
+    private final BooleanSetting compassOnly = new BooleanSetting("仅指南针", true);
+    private final BooleanSetting noPlayerOnly = new BooleanSetting("仅无人模式", true);
     private boolean hasCompassItemCached = false;
     private BlockPos spawnPosition;
     private float renderYaw;
@@ -31,7 +31,7 @@ extends Module {
     private double renderZ;
 
     public Compass() {
-        super("Compass", Category.RENDER);
+        super("指南针", Category.RENDER);
     }
 
     private BlockPos getSpawnPosition() {

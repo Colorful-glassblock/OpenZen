@@ -78,18 +78,18 @@ public class Backtrack extends Module {
         }
     }
 
-    private final NumberSetting minRange = new NumberSetting("Min Range", 3.0, 1.0, 6.0, 0.1);
-    private final NumberSetting maxRange = new NumberSetting("Max Range", 6.0, 1.0, 6.0, 0.1);
-    private final NumberSetting delay = new NumberSetting("Delay", 200.0, 0.0, 1000.0, 10.0);
-    private final NumberSetting chance = new NumberSetting("Chance", 100.0, 5.0, 100.0, 1.0);
-    private final BooleanSetting resetOnVelocity = new BooleanSetting("Reset On Velocity", true);
-    private final BooleanSetting render = new BooleanSetting("Render", true);
+    private final NumberSetting minRange = new NumberSetting("最小范围", 3.0, 1.0, 6.0, 0.1);
+    private final NumberSetting maxRange = new NumberSetting("最大范围", 6.0, 1.0, 6.0, 0.1);
+    private final NumberSetting delay = new NumberSetting("延迟", 200.0, 0.0, 1000.0, 10.0);
+    private final NumberSetting chance = new NumberSetting("概率", 100.0, 5.0, 100.0, 1.0);
+    private final BooleanSetting resetOnVelocity = new BooleanSetting("速度重置", true);
+    private final BooleanSetting render = new BooleanSetting("渲染", true);
     private final ConcurrentLinkedQueue<PacketEntry> packetQueue = new ConcurrentLinkedQueue<>();
     private volatile PositionTracker positionTracker;
     private volatile boolean isBacktrackingActive;
 
     public Backtrack() {
-        super("Backtrack", Category.COMBAT);
+        super("回溯", Category.COMBAT);
         INSTANCE = this;
     }
 

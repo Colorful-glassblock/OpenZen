@@ -42,7 +42,7 @@ extends Module {
     public static Rotation targetRotation;
 
     public AntiTNT() {
-        super("AntiTNT", Category.PLAYER);
+        super("反TNT", Category.PLAYER);
         INSTANCE = this;
     }
 

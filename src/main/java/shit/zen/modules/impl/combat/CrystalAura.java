@@ -28,10 +28,10 @@ extends Module {
     public static CrystalAura INSTANCE;
     public static Rotation aimRotation;
     private Entity crystalTarget;
-    public final BooleanSetting attackOnPacket = new BooleanSetting("Attack on Packet (Danger)", false);
+    public final BooleanSetting attackOnPacket = new BooleanSetting("数据包攻击（危险）", false);
 
     public CrystalAura() {
-        super("CrystalAura", Category.COMBAT);
+        super("水晶光环", Category.COMBAT);
         INSTANCE = this;
     }
 

@@ -33,7 +33,7 @@ import shit.zen.event.EventTarget;
 public class Stuck
 extends Module {
     public static Stuck INSTANCE;
-    private final ModeSetting modeSetting = new ModeSetting("Mode", "Delay", "Packet").withDefault("Delay");
+    private final ModeSetting modeSetting = new ModeSetting("模式", "延迟", "数据包").withDefault("延迟");
     private int stuckState = 0;
     private Packet<?> capturedPacket;
     private float savedYaw;
@@ -42,7 +42,7 @@ extends Module {
     private final Queue<ServerboundPongPacket> pongQueue = new ConcurrentLinkedQueue<>();
 
     public Stuck() {
-        super("Stuck", Category.PLAYER);
+        super("卡住", Category.PLAYER);
         INSTANCE = this;
     }
 
@@ -62,7 +62,7 @@ extends Module {
         }
         if (enable) {
             super.setEnabled(true);
-        } else if (this.modeSetting.is("Delay")) {
+        } else if (this.modeSetting.is("延迟")) {
             if (this.stuckState == 3) {
                 super.setEnabled(false);
             } else {
@@ -80,7 +80,7 @@ extends Module {
 
     @EventTarget
     public void onTick(TickEvent tickEvent) {
-        if (!this.modeSetting.is("Packet")) {
+        if (!this.modeSetting.is("数据包")) {
             return;
         }
         Scaffold scaffold = Scaffold.INSTANCE;
@@ -125,13 +125,13 @@ extends Module {
                     this.savedPitch = currentPitch;
                 }
                 PacketUtil.sendQueued((Packet<ServerGamePacketListener>) this.capturedPacket);
-            } else if (!this.isAntiVoidActive() && this.modeSetting.is("Packet") && mc.player.tickCount % 10 == 0) {
+            } else if (!this.isAntiVoidActive() && this.modeSetting.is("数据包") && mc.player.tickCount % 10 == 0) {
                 while (!this.pongQueue.isEmpty()) {
                     PacketUtil.sendQueued((Packet<ServerGamePacketListener>) this.pongQueue.poll());
                 }
             }
             if (this.pendingDisable) {
-                if (this.modeSetting.is("Delay")) {
+                if (this.modeSetting.is("延迟")) {
                     PacketUtil.sendQueued(new ServerboundMovePlayerPacket.Pos(mc.player.getX() + 1337.0, mc.player.getY(), mc.player.getZ() + 1337.0, mc.player.onGround()));
                 } else {
                     PacketUtil.sendQueued(new ServerboundPlayerCommandPacket(mc.player, ServerboundPlayerCommandPacket.Action.START_FALL_FLYING));
@@ -139,7 +139,7 @@ extends Module {
                 while (!this.pongQueue.isEmpty()) {
                     PacketUtil.sendQueued((Packet<ServerGamePacketListener>) this.pongQueue.poll());
                 }
-                if (this.modeSetting.is("Packet")) {
+                if (this.modeSetting.is("数据包")) {
                     for (int i = 1; i <= 4; ++i) {
                         ClientBase.delayPackets.add(() -> {});
                     }
@@ -182,7 +182,7 @@ extends Module {
         }
         Object rawPacket = packetEvent.getPacket();
         if (rawPacket instanceof ServerboundMovePlayerPacket movePacket) {
-            if (this.stuckState != 1 && this.modeSetting.is("Packet")) {
+            if (this.stuckState != 1 && this.modeSetting.is("数据包")) {
                 Rotation jitterRotation = new Rotation(mc.player.getYRot() + (float)(Math.random() - 0.5), mc.player.getXRot());
                 ReflectionUtil.setXRot(movePacket, jitterRotation.getPitch());
                 ReflectionUtil.setYRot(movePacket, jitterRotation.getYaw());
@@ -195,7 +195,7 @@ extends Module {
             this.capturedPacket = packetEvent.getPacket();
             this.stuckState = 1;
             packetEvent.setCancelled(true);
-        } else if (packetEvent.getPacket() instanceof ClientboundPlayerPositionPacket && this.modeSetting.is("Delay")) {
+        } else if (packetEvent.getPacket() instanceof ClientboundPlayerPositionPacket && this.modeSetting.is("延迟")) {
             while (!this.pongQueue.isEmpty()) {
                 PacketUtil.sendQueued((Packet<ServerGamePacketListener>) this.pongQueue.poll());
             }

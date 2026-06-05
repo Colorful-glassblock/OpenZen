@@ -50,13 +50,13 @@ public class AutoWebPlace extends Module {
     public static AutoWebPlace INSTANCE;
     public static Rotation targetRotation;
 
-    public final NumberSetting rangeSetting = new NumberSetting("Range", 4.0, 3.0, 5.0, 0.1);
-    public final NumberSetting delaySetting = new NumberSetting("Delay", 4.0, 1.0, 20.0, 1.0);
-    public final BooleanSetting renderSetting = new BooleanSetting("Render", true);
-    public final BooleanSetting groundWebSetting = new BooleanSetting("Ground Web", false);
-    public final BooleanSetting lavaSetting = new BooleanSetting("Lava", true);
-    public final BooleanSetting lavaWaitWaterBucketSetting = new BooleanSetting("Lava Wait Water Bucket", true);
-    public final BooleanSetting debugSetting = new BooleanSetting("Debug", true);
+    public final NumberSetting rangeSetting = new NumberSetting("范围", 4.0, 3.0, 5.0, 0.1);
+    public final NumberSetting delaySetting = new NumberSetting("延迟", 4.0, 1.0, 20.0, 1.0);
+    public final BooleanSetting renderSetting = new BooleanSetting("渲染", true);
+    public final BooleanSetting groundWebSetting = new BooleanSetting("地面蛛网", false);
+    public final BooleanSetting lavaSetting = new BooleanSetting("岩浆", true);
+    public final BooleanSetting lavaWaitWaterBucketSetting = new BooleanSetting("岩浆等待水桶", true);
+    public final BooleanSetting debugSetting = new BooleanSetting("调试", true);
 
     private final TickTimer placementTimer = new TickTimer();
     private Phase placementPhase = Phase.IDLE;
@@ -81,7 +81,7 @@ public class AutoWebPlace extends Module {
     private Vec3 lastDebugAimPoint;
 
     public AutoWebPlace() {
-        super("AutoWebPlace", Category.PLAYER);
+        super("自动放蛛网", Category.PLAYER);
         INSTANCE = this;
     }
 
@@ -1325,7 +1325,7 @@ public class AutoWebPlace extends Module {
 
     private void debugLog(String message) {
         if (this.debugSetting.getValue()) {
-            ChatUtil.print("[AutoWebPlace] " + message);
+            ChatUtil.print("[自动放蛛网] " + message);
         }
     }
 

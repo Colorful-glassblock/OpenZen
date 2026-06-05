@@ -8,7 +8,7 @@ import shit.zen.event.EventTarget;
 public class NoPush
 extends Module {
     public NoPush() {
-        super("NoPush", Category.MOVEMENT);
+        super("无推动", Category.MOVEMENT);
     }
 
     @EventTarget

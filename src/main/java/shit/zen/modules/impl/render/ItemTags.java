@@ -7,7 +7,7 @@ public class ItemTags extends Module {
     public static ItemTags INSTANCE;
 
     public ItemTags() {
-        super("ItemTags", Category.RENDER);
+        super("物品标签", Category.RENDER);
         INSTANCE = this;
     }
 }
