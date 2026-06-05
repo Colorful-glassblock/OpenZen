@@ -66,6 +66,12 @@ class GlyphPage {
         if (this.font.canDisplay(c)) {
             return this.font;
         }
+        // 当主字体无法渲染该字符时（如中文字符），使用 CJK 回退字体
+        Font fallback = FontStore.getCjkFallbackFont();
+        if (fallback.canDisplay(c)) {
+            return fallback;
+        }
+        // 都无法渲染时仍然返回原字体（渲染方块总比崩溃好）
         return this.font;
     }
 

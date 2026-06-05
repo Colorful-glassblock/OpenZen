@@ -45,4 +45,37 @@ public class FontStore {
             return new CustomFont(new Font("SansSerif", 0, (int)(size / 2)), size / 2.0f);
         }
     }
+
+    /**
+     * 返回一个可用于渲染中文等 CJK 字符的回退 Font。
+     * 优先使用项目内置的 pingfang_sc_regular.ttf，加载失败时回退到系统中文字体。
+     */
+    static Font getCjkFallbackFont() {
+        return CjkFallbackHolder.FONT;
+    }
+
+    private static final class CjkFallbackHolder {
+        static final Font FONT = loadCjkFallback();
+
+        private static Font loadCjkFallback() {
+            // 1) 尝试加载项目内置的苹方字体
+            try (InputStream stream = Assets.open("/assets/zen/fonts/pingfang_sc_regular.ttf")) {
+                if (stream != null) {
+                    return Font.createFont(Font.TRUETYPE_FONT, stream);
+                }
+            } catch (Exception e) {
+                System.err.println("Failed to load bundled pingfang_sc_regular.ttf for CJK fallback");
+            }
+            // 2) 尝试系统常见中文字体（Windows 优先）
+            String[] cjkFonts = {"Microsoft YaHei", "微软雅黑", "SimSun", "宋体", "NSimSun", "新宋体", "KaiTi", "楷体", "FangSong", "仿宋"};
+            for (String fontName : cjkFonts) {
+                Font f = new Font(fontName, Font.PLAIN, 1);
+                if (f.canDisplay('中')) {
+                    return f;
+                }
+            }
+            // 3) 最终回退：逻辑字体 SansSerif（可能仍不支持中文，但总比 NPE 好）
+            return new Font("SansSerif", Font.PLAIN, 1);
+        }
+    }
 }
