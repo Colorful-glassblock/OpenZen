@@ -45,7 +45,7 @@ extends TargetStyle {
 
     public RoundTargetStyle() {
         super(currentTargetName);
-        this.nameFont = FontPresets.pingfang(14.0f);
+        this.nameFont = FontPresets.notoSansCjk(14.0f);
         this.subFont = FontPresets.astaSans(13.0f);
         this.scaleAnim.setCurrentValue(1.0);
         this.fadeAnim = new SmoothAnimationTimer();

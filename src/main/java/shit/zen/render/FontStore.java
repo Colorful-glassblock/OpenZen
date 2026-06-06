@@ -8,8 +8,8 @@ import shit.zen.utils.misc.Assets;
 public class FontStore {
     public static CustomFont OPENSANS_16 = loadFont(16.0f, "opensans.ttf");
     public static CustomFont OPENSANS_18 = loadFont(18.0f, "opensans.ttf");
-    public static CustomFont PINGFANG_16 = loadFont(16.0f, "pingfang_sc_regular.ttf");
-    public static CustomFont PINGFANG_18 = loadFont(18.0f, "pingfang_sc_regular.ttf");
+    public static CustomFont NOTO_SANS_CJK_16 = loadFont(16.0f, "NotoSansCJKsc-Regular.otf");
+    public static CustomFont NOTO_SANS_CJK_18 = loadFont(18.0f, "NotoSansCJKsc-Regular.otf");
     public static CustomFont ICON_18 = loadFont(18.0f, "icon.ttf");
     public static CustomFont ICON_30 = loadFont(30.0f, "icon.ttf");
     public static CustomFont MATERIAL_20 = loadFontWithFallback(20.0f, "material.ttf");
@@ -48,7 +48,10 @@ public class FontStore {
 
     /**
      * 返回一个可用于渲染中文等 CJK 字符的回退 Font。
-     * 优先使用项目内置的 pingfang_sc_regular.ttf，加载失败时回退到系统中文字体。
+     * 回退链：
+     *   1) 项目内置的 Noto Sans CJK SC（思源黑体）
+     *   2) 系统已安装的跨平台 CJK 字体
+     *   3) 逻辑字体 SansSerif（最终兜底）
      */
     static Font getCjkFallbackFont() {
         return CjkFallbackHolder.FONT;
@@ -58,23 +61,32 @@ public class FontStore {
         static final Font FONT = loadCjkFallback();
 
         private static Font loadCjkFallback() {
-            // 1) 尝试加载项目内置的苹方字体
-            try (InputStream stream = Assets.open("/assets/zen/fonts/pingfang_sc_regular.ttf")) {
+            // 1) 尝试加载项目内置的思源黑体（Noto Sans CJK SC）
+            try (InputStream stream = Assets.open("/assets/zen/fonts/NotoSansCJKsc-Regular.otf")) {
                 if (stream != null) {
                     return Font.createFont(Font.TRUETYPE_FONT, stream);
                 }
             } catch (Exception e) {
-                System.err.println("Failed to load bundled pingfang_sc_regular.ttf for CJK fallback");
+                System.err.println("Failed to load bundled NotoSansCJKsc-Regular.otf for CJK fallback");
             }
-            // 2) 尝试系统常见中文字体（Windows 优先）
-            String[] cjkFonts = {"Microsoft YaHei", "微软雅黑", "SimSun", "宋体", "NSimSun", "新宋体", "KaiTi", "楷体", "FangSong", "仿宋"};
+            // 2) 尝试系统已安装的 CJK 字体（跨平台，按优先级排列）
+            String[] cjkFonts = {
+                // Linux / 跨平台
+                "Noto Sans CJK SC", "Noto Sans CJK", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei",
+                // Windows
+                "Microsoft YaHei", "微软雅黑", "SimSun", "宋体",
+                // macOS
+                "PingFang SC", "Hiragino Sans GB", "STHeiti",
+                // 通用
+                "NSimSun", "新宋体", "KaiTi", "楷体", "FangSong", "仿宋"
+            };
             for (String fontName : cjkFonts) {
                 Font f = new Font(fontName, Font.PLAIN, 1);
                 if (f.canDisplay('中')) {
                     return f;
                 }
             }
-            // 3) 最终回退：逻辑字体 SansSerif（可能仍不支持中文，但总比 NPE 好）
+            // 3) 最终回退：逻辑字体 SansSerif
             return new Font("SansSerif", Font.PLAIN, 1);
         }
     }

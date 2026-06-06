@@ -101,7 +101,7 @@ extends HudElement {
     }
 
     private final List<PotionEffectsHud.EffectEntry> effectEntryList = new ArrayList<>();
-    final FontRenderer effectNameFont = FontPresets.pingfang(16.0f);
+    final FontRenderer effectNameFont = FontPresets.notoSansCjk(16.0f);
     private final FontRenderer timerFont = FontPresets.axiformaBold(16.0f);
     final FontRenderer amplifierFont = FontPresets.axiformaBold(14.0f);
     private final Paint backgroundPaint = new Paint();

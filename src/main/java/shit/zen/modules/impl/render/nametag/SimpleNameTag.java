@@ -29,7 +29,7 @@ import shit.zen.utils.render.RenderUtil;
 public class SimpleNameTag extends NameTagStyle {
     private final Map<Entity, Vector2f> entityPositions = new ConcurrentHashMap<>();
     private final List<BlurRect> blurRects = new ArrayList<>();
-    private final FontRenderer font = FontPresets.pingfang(16.0f);
+    private final FontRenderer font = FontPresets.notoSansCjk(16.0f);
     private Paint paint;
 
     public SimpleNameTag() {

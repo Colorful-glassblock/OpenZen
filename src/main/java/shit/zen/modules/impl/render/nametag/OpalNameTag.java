@@ -65,7 +65,7 @@ public class OpalNameTag extends NameTagStyle {
         this.distanceSetting = NameTags.INSTANCE.distanceSetting;
         this.showHealthSetting = NameTags.INSTANCE.showHealthSetting;
         this.showArmorSetting = NameTags.INSTANCE.showArmorSetting;
-        this.mainFont = FontPresets.pingfang(28.0f);
+        this.mainFont = FontPresets.notoSansCjk(28.0f);
         this.nameFont = Fonts.getRenderer("AstaSans-Medium.ttf", 28.0f);
         this.iconFont = Fonts.getRenderer("MaterialIcons-Regular.ttf", 28.0f);
         this.paint = new Paint();
