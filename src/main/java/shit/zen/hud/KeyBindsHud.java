@@ -185,7 +185,7 @@ extends HudElement {
             return;
         }
         this.maxWidth = GlHelper.getStringWidth("\uE1C6", this.bindFont);
-        this.totalHeight = GlHelper.getStringWidth("Hotkeys", this.nameFont);
+        this.totalHeight = GlHelper.getStringWidth("快捷键", this.nameFont);
         this.visibleHeight = GlHelper.getStringWidth("\uE9F6", this.bindFont);
         this.scrollOffset = GlHelper.getFontAscent(this.nameFont);
         this.alpha = GlHelper.getFontAscent(this.keyFont);
@@ -328,11 +328,11 @@ extends HudElement {
         if (rightAligned) {
             float iconX = x + width - 5.0f - this.maxWidth;
             float titleX = iconX - 3.0f - this.totalHeight;
-            GlHelper.drawTextWithShadow("Hotkeys", titleX, headerTextY, this.nameFont, this.disabledPaint);
+            GlHelper.drawTextWithShadow("快捷键", titleX, headerTextY, this.nameFont, this.disabledPaint);
             GlHelper.drawTextWithShadow("\uE1C6", iconX, headerTextY + 1.0f, this.bindFont, this.disabledPaint);
         } else {
             GlHelper.drawTextWithShadow("\uE1C6", x + 5.0f, headerTextY + 1.0f, this.bindFont, this.disabledPaint);
-            GlHelper.drawTextWithShadow("Hotkeys", x + 5.0f + this.maxWidth + 3.0f, headerTextY, this.nameFont, this.disabledPaint);
+            GlHelper.drawTextWithShadow("快捷键", x + 5.0f + this.maxWidth + 3.0f, headerTextY, this.nameFont, this.disabledPaint);
         }
         if (this.rowList.isEmpty()) {
             return;

@@ -285,9 +285,9 @@ extends ClientBase {
 
     private String getModuleDescription(Module module) {
         try {
-            return "This module provides " + module.getName().toLowerCase() + " functionality.";
+            return "此模块提供 " + module.getName().toLowerCase() + " 功能。";
         } catch (Exception exception) {
-            return "No description available.";
+            return "暂无描述。";
         }
     }
 
@@ -390,8 +390,8 @@ extends ClientBase {
         int toggleY = panelY + (headerHeight - toggleHeight) / 2;
         if (button == 0 && mouseX >= toggleX && mouseX <= toggleX + toggleHeight * 2 && mouseY >= toggleY && mouseY <= toggleY + toggleHeight) {
             this.currentModule.toggle();
-            String stateLabel = this.currentModule.isEnabled() ? "On" : "Off";
-            PanelClickGui.panelClickGui.addToast(this.currentModule.getName() + " Module " + stateLabel);
+            String stateLabel = this.currentModule.isEnabled() ? "已开启" : "已关闭";
+            PanelClickGui.panelClickGui.addToast(this.currentModule.getName() + " 模块" + stateLabel);
             return true;
         }
         List<Setting<?>> settings = this.currentModule.getSettings();

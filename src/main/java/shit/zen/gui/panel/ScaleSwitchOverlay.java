@@ -87,7 +87,7 @@ extends ClientBase {
                 return;
             }
             FontRenderer titleFont = FontPresets.axiformaBold(24.0f * scale);
-            String title = "Waiting";
+            String title = "请等待";
             float titleWidth = GlHelper.getStringWidth(title, titleFont);
             float titleX = (float)boxX + (boxWidth - titleWidth) / 2.0f;
             float titleY = (float)boxY + 45.0f * scale;
@@ -95,7 +95,7 @@ extends ClientBase {
             int glowColor = alphaByte << 24 | 0xFFFFFF;
             TextGlow.drawGlowText(title, titleX, titleY, titleFont, titleColor, glowColor, 10.0f * scale);
             FontRenderer descFont = FontPresets.axiformaRegular(18.0f * scale);
-            String description = String.format(Locale.US, "Switching scale from %.0f%% to %.0f%%", new Object[]{this.fromScale * 100.0f, this.toScale * 100.0f});
+            String description = String.format(Locale.US, "正在切换缩放: %.0f%% → %.0f%%", new Object[]{this.fromScale * 100.0f, this.toScale * 100.0f});
             float descWidth = GlHelper.getStringWidth(description, descFont);
             float descX = (float)boxX + (boxWidth - descWidth) / 2.0f;
             float descY = (float)boxY + 75.0f * scale;

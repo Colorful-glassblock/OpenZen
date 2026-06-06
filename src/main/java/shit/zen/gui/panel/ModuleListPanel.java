@@ -217,10 +217,10 @@ extends ClientBase {
         float headerHeight = 30.0f * scale;
         int panelWidth = (int)(160.0f * scale);
         FontRenderer titleFont = FontPresets.axiformaBold(20.0f * scale);
-        String titleText = category == null ? "Search" : category.name().substring(0, 1).toUpperCase() + category.name().substring(1).toLowerCase();
+        String titleText = category == null ? "搜索" : category.name().substring(0, 1).toUpperCase() + category.name().substring(1).toLowerCase();
         GlHelper.drawText(titleText, (float)panelX + 10.0f * scale, (float)panelY + 12.0f * scale, titleFont, this.applyAlpha(-1, alpha));
         FontRenderer subtitleFont = FontPresets.axiformaRegular(12.0f * scale);
-        String subtitle = category == null ? modules.size() + " Results" : "Sorting: A-Z";
+        String subtitle = category == null ? modules.size() + " 个结果" : "排序: A-Z";
         float subtitleWidth = GlHelper.getStringWidth(subtitle, subtitleFont);
         float subtitleX = (float)(panelX + panelWidth) - subtitleWidth - 10.0f * scale;
         GlHelper.drawText(subtitle, subtitleX, (float)panelY + 14.0f * scale, subtitleFont, this.applyAlpha(-5592406, alpha));
@@ -340,8 +340,8 @@ extends ClientBase {
             if (this.isMouseOverModule(module, panelX, adjustedRowY = (int)((float)rowY - this.scrollOffset), mouseX, mouseY, scale)) {
                 if (button == 0) {
                     module.toggle();
-                    String stateLabel = module.isEnabled() ? "On" : "Off";
-                    PanelClickGui.panelClickGui.addToast(module.getName() + " Module " + stateLabel);
+                    String stateLabel = module.isEnabled() ? "已开启" : "已关闭";
+                    PanelClickGui.panelClickGui.addToast(module.getName() + " 模块" + stateLabel);
                 } else if (button == 1) {
                     this.hoveredModule = module;
                 } else if (button == 2) {

@@ -91,7 +91,7 @@ implements SettingRenderer {
                     multiSelectSetting.getValue().add(option);
                 }
                 boolean nowSelected = multiSelectSetting.isSelected(option);
-                PanelClickGui.panelClickGui.addToast(option + (nowSelected ? " enabled" : " disabled"));
+                PanelClickGui.panelClickGui.addToast(option + (nowSelected ? " 已启用" : " 已禁用"));
                 return true;
             }
             optionY += rowHeight;

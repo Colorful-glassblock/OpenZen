@@ -110,10 +110,10 @@ implements IHudElement {
     private String[] getServerInfo() {
         PlayerInfo playerInfo;
         if (mc.isSingleplayer()) {
-            return new String[]{"Singleplayer", "1ms"};
+            return new String[]{"单人游戏", "1ms"};
         }
         ServerData serverData = mc.getCurrentServer();
-        String serverIp = serverData != null ? serverData.ip : "Multiplayer";
+        String serverIp = serverData != null ? serverData.ip : "多人游戏";
         int ping = 0;
         if (mc.getConnection() != null && mc.player != null && (playerInfo = mc.getConnection().getPlayerInfo(mc.player.getUUID())) != null) {
             ping = playerInfo.getLatency();
