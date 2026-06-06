@@ -21,9 +21,9 @@ import shit.zen.utils.render.ColorUtil;
 public class TabListHud
 extends ClientBase
 implements IHudElement {
-    private static final FontRenderer nameFont = FontPresets.pingfang(12.0f);
+    private static final FontRenderer nameFont = FontPresets.notoSansCjk(12.0f);
     private static final FontRenderer headerFont = FontPresets.poppinsBold(20.0f);
-    private static final FontRenderer titleFont = FontPresets.pingfang(16.0f);
+    private static final FontRenderer titleFont = FontPresets.notoSansCjk(16.0f);
 
     @Override
     public boolean hasBackground() {

@@ -22,7 +22,7 @@ extends HudElement {
     }
 
     private List<Module> getVisibleModules() {
-        return ZenClient.getInstance().getModuleManager().getModules().stream().filter(module -> !(module instanceof ModuleListHud) && !(module instanceof Interface)).filter(Module::isEnabled).filter(module -> !module.getName().isEmpty()).sorted((a, b) -> Mth.ceil(GlHelper.getStringWidth(b.getName(), FontPresets.pingfang(16.0f)) - GlHelper.getStringWidth(a.getName(), FontPresets.pingfang(16.0f)))).collect(Collectors.toList());
+        return ZenClient.getInstance().getModuleManager().getModules().stream().filter(module -> !(module instanceof ModuleListHud) && !(module instanceof Interface)).filter(Module::isEnabled).filter(module -> !module.getName().isEmpty()).sorted((a, b) -> Mth.ceil(GlHelper.getStringWidth(b.getName(), FontPresets.notoSansCjk(16.0f)) - GlHelper.getStringWidth(a.getName(), FontPresets.notoSansCjk(16.0f)))).collect(Collectors.toList());
     }
 
     @Override
@@ -37,7 +37,7 @@ extends HudElement {
         if (!ZenClient.getInstance().getModuleManager().getModule(Interface.class).isEnabled()) {
             return;
         }
-        FontRenderer fontRenderer = FontPresets.pingfang(16.0f);
+        FontRenderer fontRenderer = FontPresets.notoSansCjk(16.0f);
         List<Module> visibleModules = this.getVisibleModules();
         GlHelper.drawTextShadowLegacy("Z", 4.0f, 4.0f, fontRenderer, ColorUtil.getRainbowColor(10, 1).getRGB());
         GlHelper.drawTextShadowLegacy("en (" + mc.getFps() + "FPS)", 4.0f + GlHelper.getStringWidth("Z", fontRenderer), 4.0f, fontRenderer, -1);

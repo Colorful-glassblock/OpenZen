@@ -121,7 +121,7 @@ extends HudElement {
 
     private final List<PlayerListHud.PlayerEntry> playerEntryList = new ArrayList<>();
     private final FontRenderer nameFont = FontPresets.poppinsMedium(15.0f);
-    final FontRenderer headerFont = FontPresets.pingfang(15.0f);
+    final FontRenderer headerFont = FontPresets.notoSansCjk(15.0f);
     private final FontRenderer subFont = FontPresets.materialIcons(18.0f);
     private final SmoothAnimationTimer slideAnim = new SmoothAnimationTimer();
     private final SmoothAnimationTimer fadeAnim = new SmoothAnimationTimer();

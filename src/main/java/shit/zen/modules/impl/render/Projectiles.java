@@ -113,7 +113,7 @@ public class Projectiles extends Module {
     public BooleanSetting showEggs = new BooleanSetting("显示鸡蛋", false);
     public BooleanSetting showSnowballs = new BooleanSetting("显示雪球", false);
     private final NumberSetting lineWidth = new NumberSetting("缩放", 0.4, 0.2, 2.0, 0.01);
-    private final FontRenderer fontRenderer = Fonts.getRenderer("pingfang_sc_regular.ttf", 32.0f);
+    private final FontRenderer fontRenderer = Fonts.getRenderer("NotoSansCJKsc-Regular.otf", 32.0f);
     private final int backgroundColorRgb = new Color(0, 0, 0, 80).getRGB();
     public static final ConcurrentHashMap<Integer, ProjectileEntry> projectileMap = new ConcurrentHashMap<>();
 

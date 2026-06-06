@@ -4,8 +4,14 @@ import shit.zen.render.FontRenderer;
 import shit.zen.render.Fonts;
 
 public final class FontPresets {
+    public static FontRenderer notoSansCjk(float size) {
+        return Fonts.getRenderer("NotoSansCJKsc-Regular.otf", size);
+    }
+
+    /** @deprecated Use {@link #notoSansCjk(float)} instead */
+    @Deprecated
     public static FontRenderer pingfang(float size) {
-        return Fonts.getRenderer("pingfang_sc_regular.ttf", size);
+        return notoSansCjk(size);
     }
 
     public static FontRenderer productSans(float size) {

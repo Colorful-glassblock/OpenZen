@@ -17,8 +17,8 @@ import shit.zen.utils.render.ColorUtil;
 
 public class NeverloseWatermark {
     private final FontRenderer boldFont = FontPresets.museoSans(18.0f);
-    private final FontRenderer regularFont = FontPresets.pingfang(13.0f);
-    private final FontRenderer smallFont = FontPresets.pingfang(13.0f);
+    private final FontRenderer regularFont = FontPresets.notoSansCjk(13.0f);
+    private final FontRenderer smallFont = FontPresets.notoSansCjk(13.0f);
     private final FontRenderer tinyFont = FontPresets.materialIcons(16.0f);
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     private final float logoWidth = 5.0f;
