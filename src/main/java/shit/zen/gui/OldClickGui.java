@@ -13,7 +13,7 @@ import shit.zen.modules.Category;
 public class OldClickGui
 extends Screen {
     private final List<CategoryPanel> categoryPanels = new ArrayList<>();
-    private static final String TITLE = "Click GUI";
+    private static final String TITLE = "点击菜单";
 
     public OldClickGui() {
         super(Component.nullToEmpty(TITLE));

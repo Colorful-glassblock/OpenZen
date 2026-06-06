@@ -93,22 +93,22 @@ extends ClientBase {
     }
 
     private String getUserId() {
-        return ZenClient.username != null && !ZenClient.username.isEmpty() ? ZenClient.username : "Unknown";
+        return ZenClient.username != null && !ZenClient.username.isEmpty() ? ZenClient.username : "未知用户";
     }
 
     private String getUserRole() {
         try {
             if (false) {
                 List<String> roles = new ArrayList<>();
-                if (roles.contains("ROLE_OWNER")) return "Premium";
-                if (roles.contains("ROLE_ADMIN")) return "Admin";
-                if (roles.contains("ROLE_BETA")) return "Beta";
+                if (roles.contains("ROLE_OWNER")) return "高级用户";
+                if (roles.contains("ROLE_ADMIN")) return "管理员";
+                if (roles.contains("ROLE_BETA")) return "测试用户";
                 return roles.get(0).replace("ROLE_", "");
             }
         } catch (Exception exception) {
             // empty catch block
         }
-        return "User";
+        return "用户";
     }
 
     public boolean isMouseOverAvatar(int originX, int originY, int mouseX, int mouseY, float scale) {

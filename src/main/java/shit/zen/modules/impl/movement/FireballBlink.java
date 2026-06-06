@@ -227,11 +227,11 @@ public class FireballBlink extends Module {
         if (this.isBlinking) {
             int qSize = this.packetQueue.size();
             long elapsed = System.currentTimeMillis() - this.blinkStartTime;
-            status = String.format("Blinking: %d packets, %.1fs, %d/%d", qSize, elapsed / 1000.0f, this.pendingReleases, this.impulseCount);
+            status = String.format("闪烁中: %d 数据包, %.1fs, %d/%d", qSize, elapsed / 1000.0f, this.pendingReleases, this.impulseCount);
         } else if (this.isThrowingFireball) {
-            status = "Throwing fireball x" + this.queuedFireballs;
+            status = "投掷火球 x" + this.queuedFireballs;
         } else {
-            status = "FireballBlink ready";
+            status = "火焰弹闪烁就绪";
         }
         float textX = width / 2.0f - mc.font.width(status) / 2.0f;
         float textY = height / 2.0f + 20.0f;

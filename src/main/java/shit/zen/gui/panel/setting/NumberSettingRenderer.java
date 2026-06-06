@@ -151,9 +151,9 @@ implements SettingRenderer {
             double max = editingNumberSetting.getMax().doubleValue();
             parsed = Math.max(min, Math.min(max, parsed));
             NumberSettingRenderer.applyValueStatic(editingNumberSetting, parsed);
-            PanelClickGui.panelClickGui.addToast(editingNumberSetting.getName() + " set to " + String.format(Locale.US, "%.1f", new Object[]{parsed}));
+            PanelClickGui.panelClickGui.addToast(editingNumberSetting.getName() + " 设置为 " + String.format(Locale.US, "%.1f", new Object[]{parsed}));
         } catch (NumberFormatException numberFormatException) {
-            PanelClickGui.panelClickGui.addToast("Invalid input, edit cancelled");
+            PanelClickGui.panelClickGui.addToast("输入无效，编辑已取消");
         }
         NumberSettingRenderer.cancelEdit();
     }
@@ -252,7 +252,7 @@ implements SettingRenderer {
         double max = numberSetting.getMax().doubleValue();
         double newValue = Math.min(max, current + step);
         this.applyValue(numberSetting, newValue);
-        PanelClickGui.panelClickGui.addToast(numberSetting.getName() + " set to " + this.formatValue(newValue));
+        PanelClickGui.panelClickGui.addToast(numberSetting.getName() + " 设置为 " + this.formatValue(newValue));
     }
 
     private void decrementValue(NumberSetting numberSetting) {
@@ -261,7 +261,7 @@ implements SettingRenderer {
         double min = numberSetting.getMin().doubleValue();
         double newValue = Math.max(min, current - step);
         this.applyValue(numberSetting, newValue);
-        PanelClickGui.panelClickGui.addToast(numberSetting.getName() + " set to " + this.formatValue(newValue));
+        PanelClickGui.panelClickGui.addToast(numberSetting.getName() + " 设置为 " + this.formatValue(newValue));
     }
 
     private void applyValue(NumberSetting numberSetting, double value) {

@@ -131,8 +131,8 @@ implements SettingRenderer {
         if (button == 0 && mouseX >= toggleX && mouseX <= toggleX + toggleWidth && mouseY >= toggleY && mouseY <= toggleY + toggleH) {
             boolean newValue = booleanSetting.getValue() == false;
             booleanSetting.setValue(newValue);
-            String stateLabel = newValue ? "On" : "Off";
-            PanelClickGui.panelClickGui.addToast(booleanSetting.getName() + " is " + stateLabel);
+            String stateLabel = newValue ? "已开启" : "已关闭";
+            PanelClickGui.panelClickGui.addToast(booleanSetting.getName() + " " + stateLabel);
             return true;
         }
         return false;

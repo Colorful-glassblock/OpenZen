@@ -61,9 +61,9 @@ implements IHudElement {
         }
         float iconSize = height - 16.0f;
         int blockCount = blockItem.getCount();
-        String countText = blockCount + " blocks";
+        String countText = blockCount + " 方块";
         double speedBps = MovementUtil.getSpeedBps();
-        String speedText = String.format("%.2fb/s", new Object[]{speedBps});
+        String speedText = String.format("%.2f方块/秒", new Object[]{speedBps});
         float countWidth = blockCountFont.getWidth(countText);
         float speedWidth = speedFont.getWidth(speedText);
         float maxTextWidth = Math.max(countWidth, speedWidth);
