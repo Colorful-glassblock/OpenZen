@@ -67,7 +67,8 @@ class GlyphPage {
             return this.font;
         }
         // 当主字体无法渲染该字符时（如中文字符），使用 CJK 回退字体
-        Font fallback = FontStore.getCjkFallbackFont();
+        // 必须将回退字体缩放到与当前页面字体相同的尺寸，否则 CJK 字符会渲染为极小的点
+        Font fallback = FontStore.getCjkFallbackFont().deriveFont(this.font.getSize2D());
         if (fallback.canDisplay(c)) {
             return fallback;
         }
